@@ -36,6 +36,5 @@ CMakeFiles/
 *.lib
 
 # Executables
-*.exe
 *.out
 *.app
