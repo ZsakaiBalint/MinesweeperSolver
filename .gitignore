@@ -1,6 +1,12 @@
 # vs code folder
 .vscode/
 
+#cmake
+*.vcxproj
+*.cmake
+*.vcxproj.files
+CMakeFiles/
+
 # Prerequisites
 *.d
 
