@@ -14,6 +14,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      
+    - name: Install MSVC Build Tools
+      uses: microsoft/setup-msbuild@v1.0.5
 
     - name: Install CMake
       uses: jwlawson/actions-setup-cmake@v1.13
