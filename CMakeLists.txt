@@ -13,4 +13,5 @@ project(MinesweeperSolver)
 add_executable(MyExecutable)
 
 add_subdirectory(src)
+#comment
 
