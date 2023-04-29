@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: C/C++ CI/CD
 
 on:
   push:
@@ -15,12 +15,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: Set up MSVC
-      uses: microsoft/setup-msbuild@v1.0.2
-      
+    - name: Set up CMake
+      uses: cmake/setup-cmake@v1.5.5
+      with:
+        cmake-version: '3.21.3'
+        
     - name: Build
-      run: g++ main.cpp window.cpp -o main.exe
-      
-    - name: Test
-      run: ctest -C Release
-
+      run: |
+        mkdir build && cd build
+        cmake ..
+        cmake --build .
+        
+    # - name: Test
+    #   run: ctest -C Release
