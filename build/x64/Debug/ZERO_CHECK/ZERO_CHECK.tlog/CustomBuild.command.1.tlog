@@ -1,0 +1,10 @@
+^C:\USERS\FELHASZNÁLÓ\DESKTOP\MINESWEEPERSOLVER\BUILD\CMAKEFILES\00A64D93312DB70CD9AB39A540E207AC\GENERATE.STAMP.RULE
+setlocal
+D:\cmake\bin\cmake.exe -SC:/Users/Felhasználó/Desktop/MinesweeperSolver -BC:/Users/Felhasználó/Desktop/MinesweeperSolver/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Felhasználó/Desktop/MinesweeperSolver/build/MinesweeperSolver.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

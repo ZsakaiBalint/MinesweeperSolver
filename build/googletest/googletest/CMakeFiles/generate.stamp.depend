@@ -1,0 +1,18 @@
+# CMake generation dependency list for this directory.
+C:/Users/Felhasználó/Desktop/MinesweeperSolver/googletest/googletest/CMakeLists.txt
+C:/Users/Felhasználó/Desktop/MinesweeperSolver/googletest/googletest/cmake/Config.cmake.in
+C:/Users/Felhasználó/Desktop/MinesweeperSolver/googletest/googletest/cmake/gtest.pc.in
+C:/Users/Felhasználó/Desktop/MinesweeperSolver/googletest/googletest/cmake/gtest_main.pc.in
+C:/Users/Felhasználó/Desktop/MinesweeperSolver/googletest/googletest/cmake/internal_utils.cmake
+D:/cmake/share/cmake-3.26/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in
+D:/cmake/share/cmake-3.26/Modules/CMakePackageConfigHelpers.cmake
+D:/cmake/share/cmake-3.26/Modules/CheckCSourceCompiles.cmake
+D:/cmake/share/cmake-3.26/Modules/CheckIncludeFile.cmake
+D:/cmake/share/cmake-3.26/Modules/CheckLibraryExists.cmake
+D:/cmake/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake
+D:/cmake/share/cmake-3.26/Modules/FindPackageMessage.cmake
+D:/cmake/share/cmake-3.26/Modules/FindPython.cmake
+D:/cmake/share/cmake-3.26/Modules/FindPython/Support.cmake
+D:/cmake/share/cmake-3.26/Modules/FindThreads.cmake
+D:/cmake/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake
+D:/cmake/share/cmake-3.26/Modules/WriteBasicConfigVersionFile.cmake

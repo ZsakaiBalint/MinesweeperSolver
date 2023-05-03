@@ -1,0 +1,10 @@
+# CMake generation dependency list for this directory.
+C:/Users/Felhasználó/Desktop/MinesweeperSolver/googletest/googlemock/CMakeLists.txt
+C:/Users/Felhasználó/Desktop/MinesweeperSolver/googletest/googlemock/cmake/gmock.pc.in
+C:/Users/Felhasználó/Desktop/MinesweeperSolver/googletest/googlemock/cmake/gmock_main.pc.in
+D:/cmake/share/cmake-3.26/Modules/CheckCSourceCompiles.cmake
+D:/cmake/share/cmake-3.26/Modules/CheckIncludeFile.cmake
+D:/cmake/share/cmake-3.26/Modules/CheckLibraryExists.cmake
+D:/cmake/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake
+D:/cmake/share/cmake-3.26/Modules/FindPackageMessage.cmake
+D:/cmake/share/cmake-3.26/Modules/FindThreads.cmake

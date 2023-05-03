@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Felhasználó\Desktop\MinesweeperSolver\build\CMakeFiles\2b42579ff411b70c36077a0758cf4454\RUN_TESTS_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{6B5BE294-E50E-3E18-A53E-F198E53F1FE3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

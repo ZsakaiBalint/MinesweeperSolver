@@ -1,0 +1,31 @@
+Start testing: May 03 15:50 Közép-európai nyári idõ
+----------------------------------------------------------
+1/1 Testing: testname
+1/1 Test: testname
+Command: "C:/Users/FelhasznÃ¡lÃ³/Desktop/MinesweeperSolver/build/test/Debug/Tests.exe"
+Directory: C:/Users/FelhasznÃ¡lÃ³/Desktop/MinesweeperSolver/build/test
+"testname" start time: May 03 15:50 Közép-európai nyári idõ
+Output:
+----------------------------------------------------------
+Running main() from C:\Users\FelhasznÃ¡lÃ³\Desktop\MinesweeperSolver\googletest\googletest\src\gtest_main.cc
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from TestSuite
+[ RUN      ] TestSuite.TestName
+[       OK ] TestSuite.TestName (0 ms)
+[ RUN      ] TestSuite.TestName2
+[       OK ] TestSuite.TestName2 (0 ms)
+[----------] 2 tests from TestSuite (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 2 tests.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"testname" end time: May 03 15:50 Közép-európai nyári idõ
+"testname" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 03 15:50 Közép-európai nyári idõ
