@@ -20,8 +20,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - run: cd build
-
     - name: Generate build files
       # Generatin build files similar to ´cmake .´
       #run: cmake ${{github.workspace}}
