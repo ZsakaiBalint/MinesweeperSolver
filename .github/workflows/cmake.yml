@@ -42,5 +42,5 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: my-artifact
-        path:  D:\a\MinesweeperSolver\MinesweeperSolver\build\Release\MyExecutable.exe
+        path:  ${{github.workspace}}\build\Release\MyExecutable.exe
 

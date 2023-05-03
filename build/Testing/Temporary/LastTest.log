@@ -1,10 +1,10 @@
-Start testing: May 03 15:50 Közép-európai nyári idõ
+Start testing: May 03 16:48 Közép-európai nyári idõ
 ----------------------------------------------------------
 1/1 Testing: testname
 1/1 Test: testname
 Command: "C:/Users/FelhasznÃ¡lÃ³/Desktop/MinesweeperSolver/build/test/Debug/Tests.exe"
 Directory: C:/Users/FelhasznÃ¡lÃ³/Desktop/MinesweeperSolver/build/test
-"testname" start time: May 03 15:50 Közép-európai nyári idõ
+"testname" start time: May 03 16:48 Közép-európai nyári idõ
 Output:
 ----------------------------------------------------------
 Running main() from C:\Users\FelhasznÃ¡lÃ³\Desktop\MinesweeperSolver\googletest\googletest\src\gtest_main.cc
@@ -21,11 +21,11 @@ Running main() from C:\Users\FelhasznÃ¡lÃ³\Desktop\MinesweeperSolver\googletest\
 [==========] 2 tests from 1 test suite ran. (0 ms total)
 [  PASSED  ] 2 tests.
 <end of output>
-Test time =   0.03 sec
+Test time =   0.04 sec
 ----------------------------------------------------------
 Test Passed.
-"testname" end time: May 03 15:50 Közép-európai nyári idõ
+"testname" end time: May 03 16:48 Közép-európai nyári idõ
 "testname" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: May 03 15:50 Közép-európai nyári idõ
+End testing: May 03 16:48 Közép-európai nyári idõ
