@@ -1,12 +1,18 @@
+#include <iostream>
 #include "window.h"
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 {
+
     switch (uMsg) 
     {
+        case WM_CREATE:
+            break;
+        
         case WM_CLOSE:
             DestroyWindow(hWnd);
             break;
+
         case WM_DESTROY:
             PostQuitMessage(0);
             return 0;
@@ -18,6 +24,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 MyWindow::MyWindow() 
     : m_hInstance(GetModuleHandle(nullptr))
 {
+    minesweeperHandle = new MinesweeperHandle();
+    m_isRunning = true;
+
     LPCSTR CLASS_NAME = "Balint Window Class"; 
 
     WNDCLASS wndClass = {};
@@ -45,7 +54,7 @@ MyWindow::MyWindow()
     m_hWnd = CreateWindowEx(
         0,
         CLASS_NAME,
-        "Title",
+        "Minesweeper Solver",
         style,
         rect.left,
         rect.top,
@@ -62,9 +71,13 @@ MyWindow::MyWindow()
 
 MyWindow::~MyWindow() 
 {
+    m_isRunning = false;
+
     LPCSTR CLASS_NAME = "Balint Window Class";
 
     UnregisterClass(CLASS_NAME, m_hInstance);
+
+    delete minesweeperHandle;
 }
 
 bool MyWindow::processMessages() 
@@ -83,4 +96,22 @@ bool MyWindow::processMessages()
     }
 
     return true;
+}
+
+MinesweeperHandle* MyWindow::getMinesweeperHandle() {
+    return minesweeperHandle;
+}
+
+HWND MyWindow::getHandler() {
+    return m_hWnd;
+}
+
+bool MyWindow::isRunning(){
+    return m_isRunning;
+}
+
+void MyWindow::resize(){
+    RECT rect = minesweeperHandle->getMinesweeperRect();
+    std::cout << "RECT: left=" << rect.left << ", top=" << rect.top << ", right=" << rect.right << ", bottom=" << rect.bottom << std::endl;
+    SetWindowPos(m_hWnd, NULL, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, SWP_NOZORDER);
 }
