@@ -18,3 +18,5 @@ tools/ : contains a build test that uses cmake
 it will build the latest version of the project  
 the project and test artifacts are available in the 'build/' folder  
 -> to run the program: run the exe file in the 'build/' folder
+
+you can see the latest project version deployed at: http://zsakbalint.web.elte.hu/
