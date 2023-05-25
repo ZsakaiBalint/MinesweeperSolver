@@ -1,6 +1,5 @@
 #pragma once
 #include <Windows.h>
-#include "minesweeperHandle.h"
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -13,13 +12,18 @@ class MyWindow {
     ~MyWindow();
     bool processMessages();
     void resize();
-    MinesweeperHandle* getMinesweeperHandle();
+  
     HWND getHandler();
     bool isRunning();
+    bool isMinesweeperOpen(); //checks if minesweeper is open
+    RECT getMinesweeperRect(); //get the are of minsweeper
+    HWND getMinesweeperHandle();
+    void findMinesweeper(); //find the minesweeper window
+    void doSomething(int xPos, int yPos);
 
   private:
     HINSTANCE m_hInstance;
     HWND m_hWnd;
-    MinesweeperHandle* minesweeperHandle;
+    HWND minesweeperHandle;
     bool m_isRunning;
 };

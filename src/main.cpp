@@ -2,7 +2,6 @@
 #include <string>
 #include <thread>
 #include "window.h"
-#include "minesweeperHandle.h"
 
 int main() {
 
@@ -13,7 +12,7 @@ int main() {
     while(running)
     {
         pWindow->resize();
-        running = pWindow->getMinesweeperHandle()->isMinesweeperOpen();
+        running = pWindow->isMinesweeperOpen();
 
         if (!pWindow->processMessages())
         {

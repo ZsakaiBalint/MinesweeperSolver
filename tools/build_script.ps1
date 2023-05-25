@@ -11,7 +11,8 @@ ctest -C Debug
 Write-Host "Deleting cmake files..."
 Set-Location ../
 mkdir temp
-Copy-Item build/test/Debug/Tests.exe temp
+Copy-Item build/test/Debug/windowTest.exe temp
+Copy-Item build/test/Debug/equationTest.exe temp
 Copy-Item build/Debug/MyExecutable.exe temp
 Remove-Item -r build
 Rename-Item "temp" "build"
