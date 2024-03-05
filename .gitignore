@@ -8,3 +8,6 @@ dependencies/*
 # Ignore the contents of the build folder
 build/*
 !build/
+
+# does not ignore the README.md file
+!README.md
