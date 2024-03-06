@@ -1,0 +1,29 @@
+name: Download Dependencies and Build
+
+on:
+  push:
+    branches:
+      - main  # adjust this to match your main branch name
+
+jobs:
+  download_and_build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download dependencies.zip
+        run: |
+          $download_url = $(curl -sSL https://api.github.com/repos/${{ github.repository }}/releases/tags/v1.0 | jq -r '.assets[] | select(.name == "dependencies.zip") | .browser_download_url')
+          curl -sSL -o dependencies.zip $download_url
+          Expand-Archive -Path dependencies.zip -DestinationPath .
+
+      - name: Override dependencies folder
+        run: |
+          robocopy /mir /e .\dependencies .\MinesweeperSolver\dependencies
+          rmdir /s /q .\dependencies
+
+      - name: Build Solver.sln
+        working-directory: MinesweeperSolver
+        run: msbuild.exe Solver.sln
