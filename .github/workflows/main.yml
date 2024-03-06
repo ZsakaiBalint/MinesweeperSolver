@@ -14,12 +14,13 @@ jobs:
         uses: actions/checkout@v2
 
 
-      - name: download dependencies.zip
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
-        with: # Grab a specific tag with caching
-          repo: ZsakaiBalint/MinesweeperSolver
+      - name: download dependencies from release
+      - uses: robinraju/release-downloader@v1.9
+        with: 
+          # Expected format {owner}/{repo}
+          repository: "ZsakaiBalint/MinesweeperSolver"
+          tag: "v1.0"
           fileName: "dependencies.zip"
-          cache: enable
 
       - name: Extract dependencies.zip
         run: |
