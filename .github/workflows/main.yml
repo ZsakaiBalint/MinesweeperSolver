@@ -26,8 +26,6 @@ jobs:
           $zipFile = Get-ChildItem -Path . -Filter 'dependencies.zip' -Recurse
           # Extract the zip file into the root folder
           Expand-Archive -Path $zipFile.FullName -DestinationPath .
-          # Remove the zip file
-          Remove-Item -Path $zipFile.FullName
 
       - name: Build Solver.sln
         working-directory: MinesweeperSolver
