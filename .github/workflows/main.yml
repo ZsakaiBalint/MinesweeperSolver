@@ -13,14 +13,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-
-      - name: download dependencies from release
-      - uses: robinraju/release-downloader@v1.9
-        with: 
-          # Expected format {owner}/{repo}
-          repository: "ZsakaiBalint/MinesweeperSolver"
-          tag: "v1.0"
-          fileName: "dependencies.zip"
+      - name: Download dependencies
+        uses: robinraju/release-downloader@v1.9
+        with:
+            repository: "ZsakaiBalint/MinesweeperSolver"
+            latest: true
+            fileName: "dependencies.zip"
 
       - name: Extract dependencies.zip
         run: |
