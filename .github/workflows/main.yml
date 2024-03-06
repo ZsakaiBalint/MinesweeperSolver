@@ -13,17 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install go-task
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
-        with: # Grab the latest version
-          repo: go-task/task
 
-      - name: Install Mozilla grcov
+      - name: download dependencies.zip
         uses: jaxxstorm/action-install-gh-release@v1.10.0
-        with: # Grab a specific file extension
-          repo: mozilla/grcov
-          tag: v0.8.12
-          extension: "\\.zip"
+        with: # Grab a specific tag with caching
+          repo: ZsakaiBalint/MinesweeperSolver
+          tag: v1.0
+          cache: enable
 
       - name: Extract dependencies.zip
         run: |
