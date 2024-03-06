@@ -23,7 +23,7 @@ jobs:
       - name: Extract dependencies.zip
         run: |
           # Extract the zip file into the root folder
-          Expand-Archive -Path "D:\a\MinesweeperSolver\MinesweeperSolver\dependencies.zip" -DestinationPath .
+          Expand-Archive -Path "D:\a\MinesweeperSolver\MinesweeperSolver\dependencies.zip" -DestinationPath "D:\a\MinesweeperSolver\MinesweeperSolver"
 
       - name: Build Solver.sln
         working-directory: MinesweeperSolver
