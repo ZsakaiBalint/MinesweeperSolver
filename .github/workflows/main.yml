@@ -25,10 +25,14 @@ jobs:
           tag: v0.8.12
           extension: "\\.zip"
 
-      - name: Override dependencies folder
+      - name: Extract dependencies.zip
         run: |
-          robocopy /mir /e .\dependencies .\MinesweeperSolver\dependencies
-          rmdir /s /q .\dependencies
+          # Find the downloaded zip file
+          $zipFile = Get-ChildItem -Path . -Filter 'dependencies.zip' -Recurse
+          # Extract the zip file into the root folder
+          Expand-Archive -Path $zipFile.FullName -DestinationPath .
+          # Remove the zip file
+          Remove-Item -Path $zipFile.FullName
 
       - name: Build Solver.sln
         working-directory: MinesweeperSolver
