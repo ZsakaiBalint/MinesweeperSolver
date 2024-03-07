@@ -20,10 +20,17 @@ jobs:
             latest: true
             fileName: "dependencies.zip"
 
-      - name: Extract dependencies.zip
+      - name: Extract dependencies
         run: |
-          # Extract the zip file into the root folder
-          Expand-Archive -Path "D:\a\MinesweeperSolver\MinesweeperSolver\dependencies.zip" -DestinationPath "D:\a\MinesweeperSolver\MinesweeperSolver"
+          $filepath = Get-ChildItem -Path 'D:\a\MinesweeperSolver\MinesweeperSolver\' -Filter *.zip -Recurse
+          $shell = new-object -com shell.application
+          foreach($file in $filepath) {
+            $zip = $shell.NameSpace($file.FullName)
+            foreach($item in $zip.items()) {
+              $shell.Namespace($file.DirectoryName).copyhere($item)
+            }
+            Remove-Item $file.FullName
+          }
 
       - name: Build Solver.sln
         working-directory: MinesweeperSolver
