@@ -3,9 +3,17 @@
 //This function reads the minefield by picture and produces a matrix which represents the minefield
 //imageName: is the name of the image WITHOUT the path
 //testMode: configures the folder of the images
-std::vector<std::vector<Square>> ScreenReader::readMinefield(std::string imageName, bool testMode) {
+std::vector<std::vector<Square>> ScreenReader::readMinefield(std::string imageName, double screenScaling,  bool testMode) {
     
     if(imageName == "") { throw std::runtime_error("no imageName was given"); }
+
+    if (1.00 - screenScaling != 0 &&
+        1.25 - screenScaling != 0 &&
+        1.50 - screenScaling != 0 &&
+        1.75 - screenScaling != 0) {
+            throw std::runtime_error("UNKNOWN SCREEN SCALING..."); 
+    }
+
     std::string imageFolder;
     
     if (testMode) {
@@ -22,32 +30,41 @@ std::vector<std::vector<Square>> ScreenReader::readMinefield(std::string imageNa
         throw std::runtime_error("Failed to load image: " + imageLocation);
     }
 
+    //get the image dimensions
     int imageWidth = largeImage.cols;
     int imageHeight = largeImage.rows;
 
     std::vector<std::vector<Square>> matrix;
 
-    //BEGINNER GAME (8 x 8)
-    if (imageWidth == 128 && imageHeight == 128) {
-        matrix.resize(8, std::vector<Square>(8));
+    if ( 
+        (imageWidth == 128 && imageHeight == 128) || 
+        (imageWidth == 160 && imageHeight == 160) ||  
+        (imageWidth == 192 && imageHeight == 192) ||
+        (imageWidth == 224 && imageHeight == 224) ) {
+
+        matrix.assign(8, std::vector<Square>(8, ZERO));
     }
-    //INTERMEDIATE GAME (16 x 16)
-    else if (imageWidth == 256 && imageHeight == 256) {
-        matrix.resize(16, std::vector<Square>(16));
+    else if ( 
+        (imageWidth == 256 && imageHeight == 256) ||
+        (imageWidth == 320 && imageHeight == 320) ||
+        (imageWidth == 384 && imageHeight == 384) ||
+        (imageWidth == 448 && imageHeight == 448) ) {
+        
+        matrix.assign(16, std::vector<Square>(16, ZERO));
     }
-    //EXPERT GAME (30 x 16)
-    else if (imageWidth == 480 && imageHeight == 256) {
-        matrix.resize(16, std::vector<Square>(30));
+    else if (
+        (imageWidth == 480 && imageHeight == 256) ||
+        (imageWidth == 600 && imageHeight == 320) ||
+        (imageWidth == 720 && imageHeight == 384) ||
+        (imageWidth == 840 && imageHeight == 448)) {
+ 
+        matrix.assign(16, std::vector<Square>(30, ZERO));
     }
     else {
-        throw std::runtime_error("the image size is not appropriate");
+        throw std::runtime_error("UNKNOWN MINEFIELD SIZE...");
     }
+    
 
-    for (unsigned i = 0; i < matrix.size(); ++i) {
-        for (unsigned j = 0; j < matrix[i].size(); ++j) {
-            matrix[i][j] = ZERO;
-        }
-    }
 
     if (testMode) {
         imageFolder = "../../images/dependencyImages/";
@@ -56,17 +73,22 @@ std::vector<std::vector<Square>> ScreenReader::readMinefield(std::string imageNa
         imageFolder = "images/dependencyImages/";
     }
 
-    cv::Mat smallImageUNKNOWN = cv::imread(imageFolder + "UNKNOWN.png");
-    cv::Mat smallImageFLAGGED = cv::imread(imageFolder + "FLAGGED.png");
-    cv::Mat smallImageZERO = cv::imread(imageFolder + "ZERO.png");
-    cv::Mat smallImageONE = cv::imread(imageFolder + "ONE.png");
-    cv::Mat smallImageTWO = cv::imread(imageFolder + "TWO.png");
-    cv::Mat smallImageTHREE = cv::imread(imageFolder + "THREE.png");
-    cv::Mat smallImageFOUR = cv::imread(imageFolder + "FOUR.png");
-    cv::Mat smallImageFIVE = cv::imread(imageFolder + "FIVE.png");
-    cv::Mat smallImageSIX = cv::imread(imageFolder + "SIX.png");
-    cv::Mat smallImageSEVEN = cv::imread(imageFolder + "SEVEN.png");
-    cv::Mat smallImageEIGHT = cv::imread(imageFolder + "EIGHT.png");
+    //set the decimals to two
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(2) << screenScaling;
+    std::string screenScalingSTR = stream.str();
+
+    cv::Mat smallImageUNKNOWN   = cv::imread(imageFolder + "UNKNOWN" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallImageFLAGGED   = cv::imread(imageFolder + "FLAGGED" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallImageZERO      = cv::imread(imageFolder + "ZERO" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallImageONE       = cv::imread(imageFolder + "ONE" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallImageTWO       = cv::imread(imageFolder + "TWO" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallImageTHREE     = cv::imread(imageFolder + "THREE" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallImageFOUR      = cv::imread(imageFolder + "FOUR" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallImageFIVE      = cv::imread(imageFolder + "FIVE" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallImageSIX       = cv::imread(imageFolder + "SIX" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallImageSEVEN     = cv::imread(imageFolder + "SEVEN" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallImageEIGHT     = cv::imread(imageFolder + "EIGHT" + "_" + screenScalingSTR + ".png");
 
     if (smallImageUNKNOWN.empty() || smallImageFLAGGED.empty() || smallImageZERO.empty() ||
         smallImageONE.empty() || smallImageTWO.empty() || smallImageTHREE.empty() ||
@@ -100,7 +122,7 @@ std::vector<std::vector<Square>> ScreenReader::readMinefield(std::string imageNa
     std::vector<cv::Point> locationsSEVEN;
     std::vector<cv::Point> locationsEIGHT;
 
-    double threshold = 0.9;
+    double threshold = 0.8;
 
     cv::matchTemplate(largeImage, smallImageUNKNOWN, resultUNKNOWN, cv::TM_CCOEFF_NORMED);
     cv::threshold(resultUNKNOWN, resultUNKNOWN, threshold, 1.0, cv::THRESH_TOZERO);
@@ -148,76 +170,89 @@ std::vector<std::vector<Square>> ScreenReader::readMinefield(std::string imageNa
 
 
     std::string printResult = "";
+    int squareSizeInPixels = 16;
+
 
     for (const auto& location : locationsUNKNOWN) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>( location.y / (squareSizeInPixels * screenScaling) );
+        int col = static_cast<int>( location.x / (squareSizeInPixels * screenScaling) );
         matrix[row][col] = UNKNOWN;
     }
     for (const auto& location : locationsFLAGGED) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>(location.y / (squareSizeInPixels * screenScaling));
+        int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
         matrix[row][col] = FLAGGED;
     }
     //don't template match for zero, it is the default for every square
     /*
     for (const auto& location : locationsZERO) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>( location.y / (squareSizeInPixels * screenScaling) );
+        int col = static_cast<int>( location.x / (squareSizeInPixels * screenScaling) );
         matrix[row][col] = ZERO;
     }
     */
     for (const auto& location : locationsONE) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>(location.y / (squareSizeInPixels * screenScaling));
+        int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
         matrix[row][col] = ONE;
     }
     for (const auto& location : locationsTWO) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>(location.y / (squareSizeInPixels * screenScaling));
+        int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
         matrix[row][col] = TWO;
     }
     for (const auto& location : locationsTHREE) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>(location.y / (squareSizeInPixels * screenScaling));
+        int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
         matrix[row][col] = THREE;
     }
     for (const auto& location : locationsFOUR) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>(location.y / (squareSizeInPixels * screenScaling));
+        int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
         matrix[row][col] = FOUR;
     }
     for (const auto& location : locationsFIVE) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>(location.y / (squareSizeInPixels * screenScaling));
+        int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
         matrix[row][col] = FIVE;
     }
     for (const auto& location : locationsSIX) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>(location.y / (squareSizeInPixels * screenScaling));
+        int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
         matrix[row][col] = SIX;
     }
     for (const auto& location : locationsSEVEN) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>(location.y / (squareSizeInPixels * screenScaling));
+        int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
         matrix[row][col] = SEVEN;
     }
     for (const auto& location : locationsEIGHT) {
-        int row = location.y / 16;
-        int col = location.x / 16;
+        int row = static_cast<int>(location.y / (squareSizeInPixels * screenScaling));
+        int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
         matrix[row][col] = EIGHT;
     }
 
     return matrix;
 }
 
-void ScreenReader::screenshotIsAlive() {
+void ScreenReader::screenshotIsAlive(double screenScaling) {
+
+    if (1.00 - screenScaling != 0 &&
+        1.25 - screenScaling != 0 &&
+        1.50 - screenScaling != 0 &&
+        1.75 - screenScaling != 0) {
+        throw std::runtime_error("UNKNOWN SCREEN SCALING...");
+    }
 
     RECT minesweeperWindow;
     GetWindowRect(minesweeperHandle, &minesweeperWindow);
 
-    int screenshotWidth = minesweeperWindow.right - minesweeperWindow.left;
-    int screenshotHeight = 100;
+    //int screenshotWidth = minesweeperWindow.right - minesweeperWindow.left;
+    int screenshotWidth = static_cast<int>((minesweeperWindow.right - minesweeperWindow.left) * screenScaling);
+    int screenshotHeight = static_cast<int>(100 * screenScaling);
+
+    //int screenshotX = static_cast<int>((minesweeperWindow.left + 15) * screenScaling);
+    //int screenshotY = static_cast<int>((minesweeperWindow.top + 101) * screenScaling);
 
     int screenshotX = minesweeperWindow.left;
     int screenshotY = minesweeperWindow.top;
@@ -252,16 +287,23 @@ void ScreenReader::screenshotIsAlive() {
     cv::imwrite(outputfilePath, screenshot);
 }
 
-void ScreenReader::screenshotMinefield() {
+void ScreenReader::screenshotMinefield(double screenScaling) {
+
+    if (1.00 - screenScaling != 0 &&
+        1.25 - screenScaling != 0 &&
+        1.50 - screenScaling != 0 &&
+        1.75 - screenScaling != 0) {
+        throw std::runtime_error("UNKNOWN SCREEN SCALING...");
+    }
 
     RECT minesweeperWindow;
     GetWindowRect(minesweeperHandle, &minesweeperWindow);
 
-    int screenshotX = minesweeperWindow.left + 15;
-    int screenshotY = minesweeperWindow.top + 101;
+    int screenshotX = static_cast<int>( (minesweeperWindow.left + 15) * screenScaling );
+    int screenshotY = static_cast<int>( (minesweeperWindow.top + 101) * screenScaling );
 
-    int screenshotWidth = difficulty.getWidth() * 16;
-    int screenshotHeight = difficulty.getHeight() * 16;
+    int screenshotWidth = static_cast<int>(difficulty.getWidth() * 16 * screenScaling);
+    int screenshotHeight = static_cast<int>(difficulty.getHeight() * 16 * screenScaling);
 
     // Create a device context for the entire screen
     HDC hScreenDC = GetDC(NULL);
@@ -293,10 +335,17 @@ void ScreenReader::screenshotMinefield() {
     cv::imwrite(outputfilePath, screenshot);
 }
 
-bool ScreenReader::readIsAlive(std::string imageName,bool testMode) {
+bool ScreenReader::readIsAlive(std::string imageName, double screenScaling, bool testMode) {
     //we have to template match 2 images:
     //the first image occurs when the user doesn't give any input to the game
     //the second image occurs while the user clicks on a square
+
+    if (1.00 - screenScaling != 0 &&
+        1.25 - screenScaling != 0 &&
+        1.50 - screenScaling != 0 &&
+        1.75 - screenScaling != 0) {
+        throw std::runtime_error("UNKNOWN SCREEN SCALING...");
+    }
 
     if (imageName == "") { throw std::runtime_error("no imageName was given"); }
 
@@ -323,8 +372,14 @@ bool ScreenReader::readIsAlive(std::string imageName,bool testMode) {
         imageFolder = "images/dependencyImages/";
     }
 
-    cv::Mat smallerImageSMILEY = cv::imread(imageFolder + "SMILEY.png");
-    cv::Mat smallerImageSMILEY_CLICK = cv::imread(imageFolder + "SMILEY_CLICK.png");
+
+    //set the decimals to two
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(2) << screenScaling;
+    std::string screenScalingSTR = stream.str();
+
+    cv::Mat smallerImageSMILEY = cv::imread(imageFolder + "SMILEY" + "_" + screenScalingSTR + ".png");
+    cv::Mat smallerImageSMILEY_CLICK = cv::imread(imageFolder + "SMILEY_CLICK" + "_" + screenScalingSTR + ".png");
 
     // Ensure all images are loaded successfully
     if (largerImage.empty() || smallerImageSMILEY.empty() || smallerImageSMILEY_CLICK.empty() )
@@ -353,8 +408,15 @@ bool ScreenReader::readIsAlive(std::string imageName,bool testMode) {
     return ( (locationsSMILEY.size() != 0) || (locationsSMILEY_CLICK.size() != 0));
 }
 
-bool ScreenReader::readIsWon(std::string imageName,bool testMode) {
+bool ScreenReader::readIsWon(std::string imageName, double screenScaling, bool testMode) {
     //we have to template match one image, the smiley with the sunglasses
+
+    if (1.00 - screenScaling != 0 &&
+        1.25 - screenScaling != 0 &&
+        1.50 - screenScaling != 0 &&
+        1.75 - screenScaling != 0) {
+        throw std::runtime_error("UNKNOWN SCREEN SCALING...");
+    }
 
     if (imageName == "") { throw std::runtime_error("No imageName was given"); }
     std::string imageFolder;
@@ -378,7 +440,14 @@ bool ScreenReader::readIsWon(std::string imageName,bool testMode) {
         imageFolder = "images/dependencyImages/";
     }
 
-    cv::Mat smallerImage = cv::imread(imageFolder + "SMILEY_WON.png");
+
+    //set the decimals to two
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(2) << screenScaling;
+    std::string screenScalingSTR = stream.str();
+
+    cv::Mat smallerImage = cv::imread(imageFolder + "SMILEY_WON" + "_" + screenScalingSTR + ".png");
+
 
     // Ensure all images are loaded successfully
     if (largerImage.empty() || smallerImage.empty())
@@ -430,13 +499,43 @@ std::vector<std::vector<Square>> ScreenReader::getPreviousMinefield() {
     return this->previousMinefield;
 }
 
-bool ScreenReader::isMinefieldInitial(std::string imageName,bool testMode) {
+bool ScreenReader::isMinefieldInitial(std::string imageName, double screenScaling, bool testMode) {
 
-    std::vector<std::vector<Square>> matrix = readMinefield(imageName,testMode);
+    std::vector<std::vector<Square>> matrix = readMinefield(imageName,screenScaling, testMode);
     for (unsigned i = 0; i < matrix.size(); ++i) {
         for (unsigned j = 0; j < matrix[i].size(); ++j) {
             if (matrix[i][j] != UNKNOWN) { return false; }
         }
     }
     return true;
+}
+
+double ScreenReader::getScreenScaling() {
+
+    auto activeWindow = GetActiveWindow();
+    HMONITOR monitor = MonitorFromWindow(activeWindow, MONITOR_DEFAULTTONEAREST);
+
+    // Get the logical width and height of the monitor
+    MONITORINFOEX monitorInfoEx;
+    monitorInfoEx.cbSize = sizeof(monitorInfoEx);
+    GetMonitorInfo(monitor, &monitorInfoEx);
+    auto cxLogical = monitorInfoEx.rcMonitor.right - monitorInfoEx.rcMonitor.left;
+    auto cyLogical = monitorInfoEx.rcMonitor.bottom - monitorInfoEx.rcMonitor.top;
+
+    // Get the physical width and height of the monitor
+    DEVMODE devMode;
+    devMode.dmSize = sizeof(devMode);
+    devMode.dmDriverExtra = 0;
+    EnumDisplaySettings(monitorInfoEx.szDevice, ENUM_CURRENT_SETTINGS, &devMode);
+    auto cxPhysical = devMode.dmPelsWidth;
+    auto cyPhysical = devMode.dmPelsHeight;
+
+    // Calculate the scaling factor
+    auto horizontalScale = ((double)cxPhysical / (double)cxLogical);
+    auto verticalScale = ((double)cyPhysical / (double)cyLogical);
+
+    // Round to 2 decimal places
+    horizontalScale = std::round(horizontalScale * 100.0) / 100.0;
+
+    return horizontalScale;
 }

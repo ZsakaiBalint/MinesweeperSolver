@@ -35,6 +35,8 @@ public:
 	void getSureResultsWithConstraints();
 	void makeGuessWithConstraints();
 
+	double getScreenScaling();
+
 	void step();
 	bool execute();
 	void test();

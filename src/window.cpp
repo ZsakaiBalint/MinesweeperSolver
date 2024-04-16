@@ -10,7 +10,7 @@ Window::~Window()
 Window::Window() : buttonHandler(), guiData()
 {
     //load the icon
-    std::wstring iconPath = L"../resources/icon.ico";
+    std::wstring iconPath = L"images/dependencyImages/icon.ico";
     HICON windowIcon = (HICON)LoadImage(GetModuleHandle(NULL), iconPath.c_str(), IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
     if (windowIcon == NULL) {  }
 
@@ -26,10 +26,10 @@ Window::Window() : buttonHandler(), guiData()
 
     }
 
-    //create the window
-    hwnd = CreateWindowEx(0, wc.lpszClassName, L"Minesweeper X solver", WS_OVERLAPPEDWINDOW,
+    //create the window (1100,650)
+    this->hwnd = CreateWindowEx(0, wc.lpszClassName, L"Minesweeper X solver", WS_OVERLAPPEDWINDOW,
         0, 0, 1100, 650, NULL, NULL, wc.hInstance, NULL);
-    if (!hwnd) {};
+    if (this->hwnd) {};
     
 
     //get the handle to the minesweeper window
@@ -108,10 +108,13 @@ Window::Window() : buttonHandler(), guiData()
         hwnd, nullptr, GetModuleHandle(nullptr), nullptr
     );
 
+
     buttonHandler.setMinesweeperHandle(hwndMinesweeper);
-    buttonHandler.setDifficulty(getDifficulty());
+    Difficulty d = getDifficulty();
+    buttonHandler.setDifficulty(d);
 
     ShowWindow(hwnd, SW_SHOW);
+
     UpdateWindow(hwnd);
 }
 
@@ -135,6 +138,9 @@ Difficulty Window::getDifficulty() {
     int windowWidth = windowRect.right - windowRect.left;
     int windowHeight = windowRect.bottom - windowRect.top;
 
+    double screenMagnification = this->buttonHandler.getScreenScaling();
+    const double epsilon = 1;
+
     if (windowWidth == 158 && windowHeight == 244) {
         Beginner b;
         return b;
@@ -147,6 +153,26 @@ Difficulty Window::getDifficulty() {
         Expert e;
         return e;
     }
+    /*
+    if (std::fabs(windowWidth - (158 * screenMagnification)) < epsilon
+    && std::fabs(windowHeight - (244 * screenMagnification)) < epsilon ) {
+
+        Beginner b;
+        return b;
+    }
+    else if (std::fabs(windowWidth - (286 * screenMagnification)) < epsilon
+    && std::fabs(windowHeight - (372 * screenMagnification)) < epsilon ) {
+
+        Intermediate i;
+        return i;
+    }
+    else if (std::fabs(windowWidth - (510 * screenMagnification)) < epsilon
+    && std::fabs(windowHeight - (372 * screenMagnification)) < epsilon ) {
+        Expert e;
+        return e;
+    }
+    */
+    
     else {
         throw std::runtime_error("unknown map difficulty");
     }
@@ -323,6 +349,11 @@ void Window::handleButtonClick(int buttonID) {
         logMessage("test clicked");
         buttonHandler.setDifficulty(this->getDifficulty());
         buttonHandler.test();
+
+        //DEBUG
+        logMessage(buttonHandler.getLastLogMessage());
+        logMessage(buttonHandler.getLastLogMessage());
+
         logMessage("testing finished successfully");
         break;
     }

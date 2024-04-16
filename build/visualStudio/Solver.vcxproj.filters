@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="images">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="images\dependencyImages">
+      <UniqueIdentifier>{70cdbb9a-29ed-474d-82ef-f79b33f6b15d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="images\testImages">
+      <UniqueIdentifier>{06d0ea53-f18f-4414-977d-901c32b017a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\buttonHandler.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\clicker.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\constraint.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\constraintGroup.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\constraintGroupSolver.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\constraintMaker.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\difficulty.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\executionMemory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\fileWriter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\guiData.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\minefieldMemory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\mineProbability.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\resource.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\screenReader.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\solution.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\solutionMatrix.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\window.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\buttonHandler.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\clicker.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\constraint.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\constraintGroup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\constraintGroupSolver.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\constraintMaker.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\difficulty.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fileWriter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\guiData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\minefieldMemory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mineProbability.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\screenReader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\solution.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\solutionMatrix.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\images\dependencyImages\EIGHT.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\FIVE.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\FLAGGED.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\FOUR.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\icon.ico">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\icon3.ico">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\ONE.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\SEVEN.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\SIX.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\SMILEY.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\SMILEY_CLICK.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\SMILEY_LOST.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\SMILEY_WON.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\THREE.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\TWO.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\UNKNOWN.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\dependencyImages\ZERO.png">
+      <Filter>images\dependencyImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\beginner_ingame.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\beginner_init.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\beginner_won.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\expert_ingame.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\expert_init.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\expert_won.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\intermediate_ingame.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\intermediate_init.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\intermediate_won.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\isalive_init.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\isalive_lost.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+    <Image Include="..\..\images\testImages\isalive_won.png">
+      <Filter>images\testImages</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" />
+  </ItemGroup>
+</Project>

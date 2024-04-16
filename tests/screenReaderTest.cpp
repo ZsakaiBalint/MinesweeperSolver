@@ -28,17 +28,17 @@ TEST(ScreenReader, readIsWon) {
 
 	//the initial smiley
 	std::string imageName = "isalive_init.png";
-	bool alive = scr.readIsWon(imageName,true);
+	bool alive = scr.readIsWon(imageName, 1.00, true);
 	EXPECT_FALSE(alive);
 
 	//the smiley after we lose a game
 	std::string imageName2 = "isalive_lost.png";
-	bool alive2 = scr.readIsWon(imageName2,true);
+	bool alive2 = scr.readIsWon(imageName2,1.00, true);
 	EXPECT_FALSE(alive2);
 
 	//the smiley after we won a game
 	std::string imageName3 = "isalive_won.png";
-	bool alive3 = scr.readIsWon(imageName3,true);
+	bool alive3 = scr.readIsWon(imageName3,1.00, true);
 	EXPECT_TRUE(alive3);
 };
 
@@ -48,7 +48,7 @@ TEST(ScreenReader, readMinefield) {
 
 	//beginner game, initial state
 	std::string imageName = "beginner_init.png";
-	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName,true);
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.00, true);
 	std::vector<std::vector<Square>> minefieldTest = {
 		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
 		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
@@ -63,7 +63,7 @@ TEST(ScreenReader, readMinefield) {
 	
 	//beginner game, ingame state
 	std::string imageName2 = "beginner_ingame.png";
-	std::vector<std::vector<Square>> minefield2 = scr.readMinefield(imageName2,true);
+	std::vector<std::vector<Square>> minefield2 = scr.readMinefield(imageName2, 1.00, true);
 	std::vector<std::vector<Square>> minefieldTest2 = {
 		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, ONE, ZERO },
 		{ UNKNOWN, UNKNOWN, TWO, ONE, TWO, FLAGGED, TWO, ONE },
@@ -297,12 +297,318 @@ TEST(ScreenReader, getMinefieldDifference) {
 }
 
 TEST(ScreenReader, isInitial) {
+	/*
 	Beginner beginner;
-	ScreenReader scr(beginner,nullptr);
+	ScreenReader scr_1(beginner,nullptr);
 
 	std::string imageName1 = "beginner_init.png";
 	std::string imageName2 = "beginner_ingame.png";
 
-	EXPECT_TRUE(scr.isMinefieldInitial(imageName1,true));
-	EXPECT_FALSE(scr.isMinefieldInitial(imageName2,true));
+	EXPECT_TRUE(scr_1.isMinefieldInitial(imageName1,true));
+	EXPECT_FALSE(scr_1.isMinefieldInitial(imageName2,true));
+	*/
+
+
+	Beginner beginner;
+	ScreenReader scr(beginner, nullptr);
+	std::string imageName = "beginner_init_125.png";
+	EXPECT_TRUE(scr.isMinefieldInitial(imageName, 1.25, true));
+};
+
+
+
+//100% SCREEN MAGNIFICATION
+TEST(ScreenReader, readMinefield_beginner_init_100) {
+	Beginner beginner;
+	ScreenReader scr(beginner, nullptr);
+
+	std::string imageName = "beginner_init_100.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.00, true);
+	std::vector<std::vector<Square>> minefieldTest = {
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN}
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
+};
+
+TEST(ScreenReader, readMinefield_beginner_ingame_100) {
+	Beginner beginner;
+	ScreenReader scr(beginner, nullptr);
+
+	std::string imageName = "beginner_ingame_100.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.00, true);
+	std::vector<std::vector<Square>> minefieldTest = {
+		{ UNKNOWN,		UNKNOWN,	UNKNOWN,	UNKNOWN,	UNKNOWN,	UNKNOWN,	ONE,		ZERO },
+		{ UNKNOWN,		UNKNOWN,	TWO,		ONE,		TWO,		FLAGGED,	TWO,		ONE },
+		{ UNKNOWN,		UNKNOWN,	TWO,		ONE,		ONE,		TWO,		FLAGGED,	ONE },
+		{ ONE,			TWO,		FLAGGED,	ONE,		ZERO,		ONE,		ONE,		ONE },
+		{ ZERO,			ONE,		ONE,		ONE,		ZERO,		ZERO,		ZERO,		ZERO },
+		{ ONE,			ONE,		ZERO,		ZERO,		ZERO,		ZERO,		ONE,		ONE },
+		{ FLAGGED,		TWO,		ONE,		ZERO,		ZERO,		ZERO,		ONE,		FLAGGED },
+		{ UNKNOWN,		FLAGGED,	ONE,		ZERO,		ZERO,		ZERO,		ONE,		ONE }
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
+};
+
+TEST(ScreenReader, readMinefield_beginner_won_100) {
+	Beginner beginner;
+	ScreenReader scr(beginner, nullptr);
+
+	std::string imageName = "beginner_won_100.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.00, true);
+	std::vector<std::vector<Square>> minefieldTest =
+	{
+		{ ZERO,		ZERO,		ZERO,		ONE,		TWO,		FLAGGED,	TWO,		FLAGGED },
+		{ ZERO,		ZERO,		ONE,		TWO,		FLAGGED,	TWO,		TWO,		ONE },
+		{ ONE,		ONE,		TWO,		FLAGGED,	THREE,		TWO,		ONE,		ONE },
+		{ ONE,		FLAGGED,	THREE,		THREE,		FLAGGED,	ONE,		ONE,		FLAGGED },
+		{ ONE,		ONE,		TWO,		FLAGGED,	TWO,		TWO,		TWO,		TWO },
+		{ ONE,		ONE,		TWO,		ONE,		ONE,		ONE,		FLAGGED,	ONE },
+		{ ONE,		FLAGGED,	ONE,		ZERO,		ZERO,		ONE,		ONE,		ONE },
+		{ ONE,		ONE,		ONE,		ZERO,		ZERO,		ZERO,		ZERO,		ZERO }
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
+};
+
+TEST(ScreenReader, readMinefield_intermediate_init_100) {
+	Intermediate intermediate;
+	ScreenReader scr(intermediate, nullptr);
+
+	std::string imageName = "intermediate_init_100.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.00, true);
+	std::vector<std::vector<Square>> minefieldTest =
+	{
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN }
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
+};
+
+TEST(ScreenReader, readMinefield_intermediate_ingame_100) {
+	Intermediate intermediate;
+	ScreenReader scr(intermediate, nullptr);
+
+	std::string imageName = "intermediate_ingame_100.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.00, true);
+	std::vector<std::vector<Square>> minefieldTest =
+	{
+		{ ZERO,		ONE,	  FLAGGED,	FLAGGED,  FLAGGED,	FLAGGED,  ONE,	    ZERO,	  ZERO,		ONE,	  FLAGGED,	FLAGGED,  FLAGGED,	ONE,	  ZERO,		ZERO },
+		{ ONE,		TWO,	  TWO,		THREE,	  THREE,	TWO,	  ONE,      ZERO,	  ZERO,		ONE,	  TWO,		FOUR,	  THREE,	TWO,	  ZERO,		ZERO },
+		{ FLAGGED,	ONE,	  ZERO,		ZERO,	  ZERO,		ZERO,	  ZERO,	    ZERO,	  ZERO,		ZERO,	  ONE,		THREE,	  FLAGGED,	TWO,	  ZERO,		ZERO },
+		{ ONE,		ONE,	  ZERO,		ZERO,	  ONE,		ONE,	  ONE,	    ONE,	  ONE,		ONE,	  ONE,		FLAGGED,  FLAGGED,	TWO,	  ZERO,		ZERO },
+		{ ZERO,		ZERO,	  ZERO,		ZERO,	  ONE,		FLAGGED,  TWO,	    TWO,	  FLAGGED,	ONE,	  ONE,		TWO,	  TWO,		ONE,	  ZERO,		ZERO },
+		{ ZERO,		ZERO,	  ZERO,		ZERO,	  ONE,		TWO,	  FLAGGED,  TWO,	  ONE,		ONE,	  ZERO,		ZERO,	  ZERO,		ZERO,	  ONE,		ONE },
+		{ ZERO,		ZERO,	  ONE,		TWO,	  THREE,	THREE,	  TWO,	    ONE,	  ZERO,		ZERO,	  ZERO,		ZERO,	  ZERO,		ZERO,	  TWO,		FLAGGED },
+		{ ZERO,		ZERO,	  ONE,		FLAGGED,  FLAGGED,	FLAGGED,  ONE,	    ONE,	  ONE,		ONE,	  ZERO,		ZERO,	  ZERO,		ONE,	  THREE,	FLAGGED },
+		{ ZERO,		ZERO,	  TWO,		THREE,	  FIVE,		THREE,	  TWO,	    ONE,	  FLAGGED,	ONE,	  ONE,		ONE,	  ONE,		ONE,	  FLAGGED,	TWO },
+		{ ZERO,		ONE,	  TWO,		FLAGGED,  TWO,		FLAGGED,  ONE,	    ONE,	  ONE,		TWO,	  TWO,		FLAGGED,  TWO,		TWO,	  TWO,		TWO },
+		{ ZERO,		ONE,	  FLAGGED,	THREE,	  UNKNOWN,  TWO,	  ONE,	    ZERO,	  ZERO,		ONE,	  FLAGGED,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN },
+		{ ONE,		TWO,	  TWO,		UNKNOWN,  UNKNOWN,  ONE,	  ZERO,	    ONE,	  TWO,		THREE,	  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN },
+		{ UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  ONE,	  ONE,	    THREE,	  FLAGGED,	FLAGGED,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN },
+		{ UNKNOWN,	UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN },
+		{ UNKNOWN,	UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN },
+		{ UNKNOWN,	UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN,  UNKNOWN }
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
+};
+
+TEST(ScreenReader, readMinefield_intermediate_won_100) {
+	Intermediate intermediate;
+	ScreenReader scr(intermediate, nullptr);
+
+	std::string imageName = "intermediate_won_100.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.00, true);
+	std::vector<std::vector<Square>> minefieldTest =
+	{
+		{ ZERO,     ONE,      FLAGGED,  FLAGGED,  ONE,      ONE,      FLAGGED,  ONE,      ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ONE,      ONE     },
+		{ ZERO,     ONE,      TWO,      TWO,      ONE,      ONE,      ONE,      ONE,      ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ONE,      FLAGGED },
+		{ ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ONE,      ONE     },
+		{ ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ONE,      ONE,      TWO,      TWO,      TWO,      ONE,      ONE,      ONE,      ONE     },
+		{ ONE,      ONE,      ZERO,     ONE,      ONE,      ONE,      ZERO,     ONE,      FLAGGED,  TWO,      FLAGGED,  FLAGGED,  TWO,      ONE,      FLAGGED,  ONE     },
+		{ FLAGGED,  ONE,      ZERO,     ONE,      FLAGGED,  THREE,    TWO,      TWO,      ONE,      TWO,      FOUR,     FLAGGED,  FOUR,     TWO,      ONE,      ONE     },
+		{ ONE,      ONE,      ONE,      TWO,      THREE,    FLAGGED,  FLAGGED,  TWO,      ONE,      ONE,      TWO,      FLAGGED,  FLAGGED,  ONE,      ZERO,     ZERO    },
+		{ TWO,      TWO,      TWO,      FLAGGED,  THREE,    FOUR,     FIVE,     FOUR,     FLAGGED,  ONE,      ONE,      TWO,      TWO,      ONE,      ZERO,     ZERO    },
+		{ FLAGGED,  FLAGGED,  FOUR,     TWO,      THREE,    FLAGGED,  FLAGGED,  FLAGGED,  TWO,      ONE,      ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ZERO    },
+		{ THREE,    FLAGGED,  FLAGGED,  ONE,      THREE,    FLAGGED,  FIVE,     TWO,      TWO,      ONE,      ONE,      ZERO,     ZERO,     ZERO,     ZERO,     ZERO    },
+		{ ONE,      TWO,      TWO,      ONE,      THREE,    FLAGGED,  THREE,    ZERO,     ONE,      FLAGGED,  ONE,      ZERO,     ONE,      ONE,      TWO,      ONE     },
+		{ ZERO,     ZERO,     ONE,      ONE,      THREE,    FLAGGED,  THREE,    ONE,      TWO,      ONE,      ONE,      ZERO,     ONE,      FLAGGED,  TWO,      FLAGGED },
+		{ ONE,      ONE,      TWO,      FLAGGED,  TWO,      TWO,      THREE,    FLAGGED,  TWO,      TWO,      ONE,      ONE,      TWO,      TWO,      THREE,    ONE     },
+		{ ONE,      FLAGGED,  TWO,      ONE,      ONE,      TWO,      FLAGGED,  FOUR,     FLAGGED,  TWO,      FLAGGED,  ONE,      ONE,      FLAGGED,  TWO,      ONE     },
+		{ ONE,      ONE,      ONE,      ZERO,     ZERO,     TWO,      FLAGGED,  THREE,    ONE,      TWO,      ONE,      ONE,      TWO,      TWO,      THREE,    FLAGGED },
+		{ ZERO,     ZERO,     ZERO,     ZERO,     ZERO,     ONE,      ONE,      ONE,      ZERO,     ZERO,     ZERO,     ZERO,     ONE,      FLAGGED,  TWO,      ONE     }
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
+};
+
+TEST(ScreenReader, readMinefield_expert_init_100) {
+	Expert expert;
+	ScreenReader scr(expert, nullptr);
+
+	std::string imageName = "expert_init_100.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.00, true);
+	std::vector<std::vector<Square>> minefieldTest =
+	{
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN },
+		{ UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN }
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
+};
+
+TEST(ScreenReader, readMinefield_expert_ingame_100) {
+	Expert expert;
+	ScreenReader scr(expert, nullptr);
+
+	std::string imageName = "expert_ingame_100.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.00, true);
+	std::vector<std::vector<Square>> minefieldTest =
+	{
+		{ZERO   ,ONE    ,FLAGGED,ONE    ,TWO    ,FLAGGED,TWO    ,ZERO   ,ONE    ,FLAGGED,FLAGGED,ONE    ,ZERO   ,ONE    ,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,TWO},
+
+		{ZERO   ,ONE    ,ONE    ,ONE    ,TWO    ,FLAGGED,TWO    ,ZERO   ,ONE    ,TWO    ,TWO    ,ONE    ,ZERO   ,ONE    ,UNKNOWN,TWO    ,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+
+		{ZERO   ,ONE    ,ONE    ,ONE    ,ONE    ,ONE    ,ONE    ,ZERO   ,ZERO   ,ZERO   ,ZERO   ,ONE    ,ONE    ,TWO    ,ONE    ,TWO    ,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+
+		{ZERO   ,ONE    ,FLAGGED,ONE    ,ONE    ,ONE    ,ONE    ,ZERO   ,ZERO   ,ZERO   ,ZERO   ,ONE    ,FLAGGED,TWO    ,UNKNOWN,ONE    ,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,THREE  ,ONE    ,ONE    ,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+
+		{ONE    ,THREE  ,TWO    ,TWO    ,ONE    ,FLAGGED,ONE    ,ONE    ,TWO    ,TWO    ,ONE    ,ONE    ,TWO    ,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,FLAGGED,ONE    ,ZERO   ,ONE    ,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+
+		{FLAGGED,TWO    ,FLAGGED,TWO    ,THREE  ,TWO    ,THREE  ,TWO    ,FLAGGED,FLAGGED,TWO    ,ONE    ,TWO    ,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,TWO    ,ONE    ,ZERO   ,ONE    ,UNKNOWN,TWO    ,ONE    ,ONE    ,FLAGGED,UNKNOWN,UNKNOWN},
+
+		{ONE    ,TWO    ,TWO    ,FLAGGED,TWO    ,FLAGGED,TWO    ,FLAGGED,FOUR   ,FLAGGED,THREE  ,TWO    ,FLAGGED,THREE  ,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,FLAGGED,TWO    ,ZERO   ,ONE    ,TWO    ,FLAGGED,ONE    ,ZERO   ,ONE    ,ONE    ,UNKNOWN,UNKNOWN},
+
+		{ZERO   ,ZERO   ,ONE    ,TWO    ,FOUR   ,FOUR   ,FOUR   ,TWO    ,TWO    ,TWO    ,UNKNOWN,UNKNOWN,TWO    ,UNKNOWN,UNKNOWN,FOUR   ,THREE  ,THREE  ,FLAGGED,TWO    ,ZERO   ,ONE    ,FLAGGED,TWO    ,ONE    ,ZERO   ,ZERO   ,ONE    ,UNKNOWN,UNKNOWN},
+
+		{ZERO   ,ZERO   ,ONE    ,TWO    ,FLAGGED,FLAGGED,FLAGGED,ONE    ,ONE    ,THREE  ,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,FLAGGED,TWO    ,TWO    ,THREE  ,FOUR   ,TWO    ,TWO    ,ONE    ,ONE    ,ZERO   ,ZERO   ,ZERO   ,ONE    ,UNKNOWN,UNKNOWN},
+
+		{ZERO   ,ZERO   ,ONE    ,FLAGGED,THREE  ,THREE  ,THREE  ,TWO    ,TWO    ,FLAGGED,FLAGGED,UNKNOWN,UNKNOWN,THREE  ,FOUR   ,FLAGGED,FOUR   ,THREE  ,FLAGGED,FLAGGED,FLAGGED,TWO    ,TWO    ,THREE  ,TWO    ,ONE    ,ONE    ,TWO    ,UNKNOWN,UNKNOWN},
+
+		{ZERO   ,ZERO   ,ONE    ,ONE    ,TWO    ,ONE    ,TWO    ,FLAGGED,TWO    ,THREE  ,UNKNOWN,UNKNOWN,THREE  ,TWO    ,ONE    ,TWO    ,FLAGGED,FLAGGED,THREE  ,THREE  ,TWO    ,TWO    ,FLAGGED,FLAGGED,FLAGGED,ONE    ,ONE    ,FLAGGED,UNKNOWN,UNKNOWN},
+
+		{ZERO   ,ZERO   ,ZERO   ,ZERO   ,ONE    ,FLAGGED,THREE  ,THREE  ,FOUR   ,THREE  ,UNKNOWN,UNKNOWN,FLAGGED,TWO    ,ZERO   ,ONE    ,TWO    ,TWO    ,TWO    ,ONE    ,ONE    ,ONE    ,TWO    ,THREE  ,TWO    ,ONE    ,ONE    ,ONE    ,TWO    ,ONE},
+
+		{ZERO   ,ZERO   ,ZERO   ,ZERO   ,ONE    ,ONE    ,THREE  ,FLAGGED,FLAGGED,FLAGGED,TWO    ,THREE  ,FLAGGED,THREE  ,ONE    ,ONE    ,ZERO   ,ZERO   ,ONE    ,FLAGGED,ONE    ,ONE    ,TWO    ,TWO    ,ONE    ,ZERO   ,ZERO   ,ZERO   ,ZERO   ,ZERO},
+
+		{ZERO   ,ZERO   ,ZERO   ,ZERO   ,ONE    ,ONE    ,FOUR   ,FLAGGED,FIVE   ,TWO    ,ONE    ,TWO    ,TWO    ,FOUR   ,FLAGGED,THREE  ,ONE    ,TWO    ,THREE  ,THREE  ,TWO    ,ONE    ,FLAGGED,FLAGGED,ONE    ,ZERO   ,ZERO   ,ZERO   ,ZERO   ,ZERO},
+
+		{ZERO   ,ZERO   ,ONE    ,ONE    ,TWO    ,FLAGGED,THREE  ,FLAGGED,TWO    ,ONE    ,ONE    ,TWO    ,FLAGGED,FOUR   ,FLAGGED,FIVE   ,FLAGGED,FOUR   ,FLAGGED,FLAGGED,ONE    ,ONE    ,TWO    ,THREE  ,TWO    ,TWO    ,ONE    ,TWO    ,ONE    ,ONE},
+
+		{ZERO   ,ZERO   ,ONE    ,FLAGGED,TWO    ,ONE    ,TWO    ,ONE    ,ONE    ,ONE    ,FLAGGED,TWO    ,ONE    ,THREE  ,FLAGGED,UNKNOWN,UNKNOWN,UNKNOWN,FLAGGED,THREE  ,ONE    ,ZERO   ,ZERO   ,ONE    ,FLAGGED,TWO    ,UNKNOWN,TWO    ,FLAGGED,ONE}
+
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
+};
+
+
+TEST(ScreenReader, readMinefield_expert_won_100) {
+	Expert expert;
+	ScreenReader scr(expert, nullptr);
+
+	std::string imageName = "expert_won_100.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.00, true);
+	std::vector<std::vector<Square>> minefieldTest =
+	{
+		{ ZERO   , ZERO   , ONE    , TWO    , FLAGGED, TWO    , TWO    , ONE    , ONE    , ONE    , FLAGGED, ONE    , ZERO   , ZERO   , ZERO   , ONE    , ONE    , ONE    , ZERO   , ZERO   , ONE    , FLAGGED, FLAGGED, ONE    , ZERO   , ZERO   , ZERO   , ONE    , ONE    , ONE     },
+		{ ZERO   , ZERO   , ONE    , FLAGGED, THREE  , FLAGGED, THREE  , FLAGGED, THREE  , TWO    , THREE  , TWO    , ONE    , ZERO   , ZERO   , TWO    , FLAGGED, TWO    , ZERO   , ONE    , TWO    , FOUR   , THREE  , TWO    , ZERO   , ZERO   , ZERO   , ONE    , FLAGGED, ONE     },
+		{ ZERO   , ZERO   , ONE    , ONE    , TWO    , TWO    , FOUR   , FLAGGED, THREE  , FLAGGED, TWO    , FLAGGED, ONE    , ZERO   , ZERO   , THREE  , FLAGGED, FOUR   , ONE    , ONE    , FLAGGED, TWO    , FLAGGED, ONE    , ONE    , ONE    , ONE    , ONE    , ONE    , ONE     },
+		{ ZERO   , ONE    , ONE    , ONE    , ZERO   , ONE    , FLAGGED, THREE  , FOUR   , THREE  , THREE  , ONE    , TWO    , ONE    , ONE    , TWO    , FLAGGED, FLAGGED, ONE    , ONE    , ONE    , TWO    , ONE    , ONE    , TWO    , FLAGGED, TWO    , ONE    , ONE    , ONE     },
+		{ ZERO   , ONE    , FLAGGED, ONE    , ZERO   , TWO    , THREE  , FOUR   , FLAGGED, FLAGGED, TWO    , ONE    , THREE  , FLAGGED, TWO    , ONE    , TWO    , TWO    , ONE    , ONE    , ONE    , ONE    , ZERO   , ZERO   , TWO    , FLAGGED, TWO    , TWO    , FLAGGED, THREE   },
+		{ ONE    , TWO    , THREE  , TWO    , TWO    , TWO    , FLAGGED, FLAGGED, THREE  , TWO    , THREE  , FLAGGED, FOUR   , FLAGGED, TWO    , ZERO   , ONE    , ONE    , ONE    , ONE    , FLAGGED, ONE    , ONE    , ONE    , THREE  , TWO    , THREE  , THREE  , FLAGGED, FLAGGED },
+		{ TWO    , FLAGGED, FOUR   , FLAGGED, TWO    , FLAGGED, THREE  , TWO    , ONE    , ZERO   , TWO    , FLAGGED, FOUR   , TWO    , THREE  , ONE    , TWO    , FLAGGED, ONE    , ONE    , TWO    , THREE  , FOUR   , FLAGGED, FIVE   , FLAGGED, FOUR   , FLAGGED, FOUR   , TWO     },
+		{ TWO    , FLAGGED, FLAGGED, TWO    , THREE  , THREE  , THREE  , ONE    , ZERO   , ONE    , TWO    , TWO    , TWO    , FLAGGED, THREE  , FLAGGED, THREE  , ONE    , ONE    , ZERO   , ONE    , FLAGGED, FLAGGED, FLAGGED, FLAGGED, FLAGGED, FOUR   , FLAGGED, TWO    , ZERO    },
+		{ ONE    , TWO    , TWO    , ONE    , ONE    , FLAGGED, FLAGGED, TWO    , ZERO   , ONE    , FLAGGED, TWO    , THREE  , THREE  , FIVE   , FLAGGED, FOUR   , TWO    , TWO    , ONE    , ONE    , THREE  , FLAGGED, FOUR   , THREE  , TWO    , THREE  , TWO    , THREE  , ONE     },
+		{ ZERO   , ZERO   , ZERO   , ZERO   , TWO    , FIVE   , FLAGGED, FOUR   , TWO    , TWO    , TWO    , TWO    , FLAGGED, FLAGGED, FOUR   , FLAGGED, FOUR   , FLAGGED, FLAGGED, TWO    , ZERO   , ONE    , ONE    , ONE    , ZERO   , ZERO   , ONE    , FLAGGED, TWO    , FLAGGED },
+		{ ZERO   , ZERO   , ZERO   , ONE    , TWO    , FLAGGED, FLAGGED, FLAGGED, TWO    , FLAGGED, ONE    , ONE    , TWO    , TWO    , THREE  , FLAGGED, THREE  , THREE  , FLAGGED, THREE  , ONE    , TWO    , ONE    , ONE    , ZERO   , ZERO   , ONE    , ONE    , TWO    , ONE     },
+		{ ZERO   , ZERO   , ZERO   , ONE    , FLAGGED, FOUR   , FIVE   , THREE  , THREE  , TWO    , TWO    , ONE    , ZERO   , ZERO   , TWO    , TWO    , TWO    , ONE    , ONE    , TWO    , FLAGGED, TWO    , FLAGGED, ONE    , ZERO   , ZERO   , ZERO   , ZERO   , ZERO   , ZERO    },
+		{ ZERO   , ZERO   , ONE    , TWO    , THREE  , FLAGGED, TWO    , FLAGGED, TWO    , THREE  , FLAGGED, TWO    , ZERO   , ZERO   , ONE    , FLAGGED, TWO    , TWO    , TWO    , TWO    , TWO    , THREE  , TWO    , ONE    , ZERO   , ZERO   , ZERO   , ONE    , ONE    , ONE     },
+		{ ONE    , ONE    , TWO    , FLAGGED, THREE  , THREE  , THREE  , THREE  , FLAGGED, THREE  , FLAGGED, TWO    , ZERO   , ZERO   , ONE    , ONE    , THREE  , FLAGGED, FLAGGED, TWO    , TWO    , FLAGGED, ONE    , ZERO   , ZERO   , ZERO   , ZERO   , TWO    , FLAGGED, TWO     },
+		{ ONE    , FLAGGED, THREE  , FOUR   , FLAGGED, THREE  , FLAGGED, FOUR   , THREE  , FOUR   , THREE  , THREE  , ONE    , ZERO   , ZERO   , ONE    , FOUR   , FLAGGED, FIVE   , FLAGGED, THREE  , TWO    , TWO    , ZERO   , ZERO   , ONE    , ONE    , THREE  , FLAGGED, TWO     },
+		{ ONE    , TWO    , FLAGGED, THREE  , FLAGGED, THREE  , TWO    , FLAGGED, FLAGGED, TWO    , FLAGGED, FLAGGED, ONE    , ZERO   , ZERO   , ONE    , FLAGGED, FLAGGED, THREE  , ONE    , TWO    , FLAGGED, ONE    , ZERO   , ZERO   , ONE    , FLAGGED, TWO    , ONE    , ONE     }
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
+};
+
+
+
+//125% SCREEN MAGNIFICATION
+TEST(ScreenReader, readMinefield_beginner_init_125) {
+	Beginner beginner;
+	ScreenReader scr(beginner, nullptr);
+
+	std::string imageName = "beginner_init_125.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.25, true);
+	std::vector<std::vector<Square>> minefieldTest = {
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN}
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
+};
+
+TEST(ScreenReader, readMinefield_beginner_ingame_125) {
+	Beginner beginner;
+	ScreenReader scr(beginner, nullptr);
+
+	std::string imageName = "beginner_ingame_125.png";
+	std::vector<std::vector<Square>> minefield = scr.readMinefield(imageName, 1.25, true);
+	std::vector<std::vector<Square>> minefieldTest = {
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN},
+		{UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN}
+	};
+
+	EXPECT_EQ(minefield, minefieldTest);
 };

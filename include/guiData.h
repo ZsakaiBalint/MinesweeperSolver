@@ -41,7 +41,6 @@ public:
 	bool isWon;
 
 	void addLogMessage(std::string message);
-
 	void logSTEP1(std::vector<std::pair<int, int>> minefreeSquares, std::vector<std::pair<int, int>> mineSquares);
 	void logSTEP2(std::vector<std::pair<int, int>> minefreeSquares, std::vector<std::pair<int, int>> mineSquares, std::vector<ConstraintGroup> constraintGroups);
 	void logSTEP3(std::vector<std::pair<int, int>> possibleGuesses, std::pair<int,int> chosenSquare, double bestProbability);

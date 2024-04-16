@@ -7,6 +7,10 @@
 #include <opencv2/opencv.hpp>
 #include <Windows.h>
 #include <string>
+#include <gdiplus.h>
+
+#include <fstream>
+#include <winsock.h>
 
 #include "minefieldMemory.h"
 
@@ -33,15 +37,15 @@ private:
 public:
 	ScreenReader(Difficulty difficulty, HWND minesweeperHandle);
 
-	void screenshotIsAlive();
+	void screenshotIsAlive(double screenScaling = 1.25);
 
-	bool readIsAlive(std::string imageName = "",bool testMode = false);
+	bool readIsAlive(std::string imageName = "", double screenScaling = 1.25, bool testMode = false);
 
-	bool readIsWon(std::string imageName = "",bool testMode = false);
+	bool readIsWon(std::string imageName = "", double screenScaling = 1.25, bool testMode = false);
 
-	void screenshotMinefield();
+	void screenshotMinefield(double screenScaling = 1.25);
 
-	std::vector<std::vector<Square>> readMinefield(std::string imageName = "",bool testMode = false);
+	std::vector<std::vector<Square>> readMinefield(std::string imageName = "",double screenScaling = 1.25, bool testMode = false);
 
 	std::vector<std::pair<int, int>> getMinefieldDifference(std::vector<std::vector<Square>> prevMinefield, std::vector<std::vector<Square>> currentMinefield);
 
@@ -49,5 +53,7 @@ public:
 
 	std::vector<std::vector<Square>> getPreviousMinefield();
 
-	bool isMinefieldInitial(std::string imageName = "",bool testMode = false);
+	bool isMinefieldInitial(std::string imageName = "", double screenScaling = 1.25, bool testMode = false);
+
+	double getScreenScaling();
 };

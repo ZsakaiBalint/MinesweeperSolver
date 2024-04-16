@@ -14,8 +14,11 @@ void ButtonHandler::setDifficulty(Difficulty difficulty) {
 	delete this->screenReader;														
 	this->screenReader = new ScreenReader(difficulty,minesweeperHandle);
 
-	screenReader->screenshotMinefield();
-	bool isInitial = screenReader->isMinefieldInitial("minesweeper_screenshot.png");
+	std::string minefieldImageLocation = "minesweeper_screenshot.png";
+	double screenScaling = screenReader->getScreenScaling();
+
+	screenReader->screenshotMinefield(screenScaling);
+	bool isInitial = screenReader->isMinefieldInitial(minefieldImageLocation,screenScaling);
 	if (!isInitial) { return; }														
 	
 	//only do the following part if the user started a new game
@@ -53,27 +56,30 @@ void ButtonHandler::step() {
 bool ButtonHandler::execute() {
 
 	std::string isAliveImageLocation = "isalive_screenshot.png";
-	this->screenReader->screenshotIsAlive();
-	bool isAlive = this->screenReader->readIsAlive(isAliveImageLocation);
+	double screenScaling = screenReader->getScreenScaling();
+
+	this->screenReader->screenshotIsAlive(screenScaling);
+	bool isAlive = this->screenReader->readIsAlive(isAliveImageLocation, screenScaling);
 
 	if (!isAlive) { return false; }
 
 	while (isAlive) {
 		step();
-		this->screenReader->screenshotIsAlive();
-		isAlive = this->screenReader->readIsAlive(isAliveImageLocation);
+		this->screenReader->screenshotIsAlive(screenScaling);
+		isAlive = this->screenReader->readIsAlive(isAliveImageLocation, screenScaling);
 	}
 
 	//save if we won or lost
-	this->screenReader->screenshotIsAlive();
+	this->screenReader->screenshotIsAlive(screenScaling);
 	std::string isWonImageLocation = "isalive_screenshot.png";
-	guiData->isWon = this->screenReader->readIsWon(isWonImageLocation);
+	guiData->isWon = this->screenReader->readIsWon(isWonImageLocation, screenScaling);
 
 	return true;
 };
 
 void ButtonHandler::test() {
-
+	this->screenReader->screenshotMinefield(1.0);
+	/*
 	int numberOfTests = 100;
 	for (int i = 0; i < numberOfTests; ++i) {
 
@@ -92,22 +98,25 @@ void ButtonHandler::test() {
 		Difficulty currentDifficulty = this->difficulty;
 		setDifficulty(difficulty);
 	}
-	
+	*/
 };
 
 void ButtonHandler::getResultsWithoutConstraints() {
 	//SUBSTEP 1 => SCREENREADER + CONSTRAINTMAKER
 
+	double screenScaling = screenReader->getScreenScaling();
+
 	//check if we are alive
-	this->screenReader->screenshotIsAlive();
+	this->screenReader->screenshotIsAlive(screenScaling);
 	std::string isAliveImageLocation = "isalive_screenshot.png";
-	bool isAlive = this->screenReader->readIsAlive(isAliveImageLocation);
+
+	bool isAlive = this->screenReader->readIsAlive(isAliveImageLocation,screenScaling);
 	if (!isAlive) { return; }
 
 	//read the new minefield
-	this->screenReader->screenshotMinefield();
+	screenReader->screenshotMinefield(screenScaling);
 	std::string minefieldImageLocation = "minesweeper_screenshot.png";
-	std::vector<std::vector<Square>> newMinefield = this->screenReader->readMinefield(minefieldImageLocation);
+	std::vector<std::vector<Square>> newMinefield = this->screenReader->readMinefield(minefieldImageLocation,screenScaling);
 
 
 	//DEBUG
@@ -288,4 +297,8 @@ std::string ButtonHandler::getLastLogMessage() {
 
 void ButtonHandler::setMinesweeperHandle(HWND handle) {
 	minesweeperHandle = handle;
+}
+
+double ButtonHandler::getScreenScaling() {
+	return screenReader->getScreenScaling();
 }

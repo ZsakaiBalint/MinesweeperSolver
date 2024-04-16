@@ -1,0 +1,44 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  buttonHandler.cpp
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\buttonHandler.cpp(196,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  clicker.cpp
+  constraint.cpp
+  constraintGroup.cpp
+  constraintGroupSolver.cpp
+  constraintMaker.cpp
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\constraintMaker.cpp(17,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\constraintMaker.cpp(18,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\constraintMaker.cpp(66,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\constraintMaker.cpp(67,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\constraintMaker.cpp(124,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\constraintMaker.cpp(125,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\constraintMaker.cpp(251,31): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  difficulty.cpp
+  fileWriter.cpp
+  guiData.cpp
+  main.cpp
+  minefieldMemory.cpp
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\minefieldMemory.cpp(22,28): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+  mineProbability.cpp
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\mineProbability.cpp(97,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\mineProbability.cpp(101,26): warning C4018: '<': signed/unsigned mismatch
+  screenReader.cpp
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\screenReader.cpp(277,47): warning C4267: 'argument': conversion from 'size_t' to 'LONG', possible loss of data
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\screenReader.cpp(325,47): warning C4267: 'argument': conversion from 'size_t' to 'LONG', possible loss of data
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\screenReader.cpp(388,17): warning C4305: 'return': truncation from 'int' to 'bool'
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\screenReader.cpp(456,17): warning C4305: 'return': truncation from 'int' to 'bool'
+  solution.cpp
+  solutionMatrix.cpp
+  window.cpp
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\window.cpp(324,10): warning C4101: 'dpi': unreferenced local variable
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\window.cpp(323,10): warning C4101: 'minesw': unreferenced local variable
+  Generating Code...
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\window.cpp(250,1): warning C4715: 'Window::WindowProc': not all control paths return a value
+C:\Users\zsakai.balint\Desktop\Solver\Solver\src\mineProbability.cpp(214,1): warning C4715: 'operator<': not all control paths return a value
+screenReader.obj : error LNK2019: unresolved external symbol "class cv::debug_build_guard::_InputOutputArray const & __cdecl cv::noArray(void)" (?noArray@cv@@YAAEBV_InputOutputArray@debug_build_guard@1@XZ) referenced in function "public: bool __cdecl ScreenReader::readIsAlive(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,double,bool)" (?readIsAlive@ScreenReader@@QEAA_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@N_N@Z)
+screenReader.obj : error LNK2019: unresolved external symbol "void __cdecl cv::findNonZero(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &)" (?findNonZero@cv@@YAXAEBV_InputArray@debug_build_guard@1@AEBV_OutputArray@31@@Z) referenced in function "public: bool __cdecl ScreenReader::readIsAlive(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,double,bool)" (?readIsAlive@ScreenReader@@QEAA_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@N_N@Z)
+screenReader.obj : error LNK2019: unresolved external symbol "bool __cdecl cv::imwrite(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::debug_build_guard::_InputArray const &,class std::vector<int,class std::allocator<int> > const &)" (?imwrite@cv@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV_InputArray@debug_build_guard@1@AEBV?$vector@HV?$allocator@H@std@@@3@@Z) referenced in function "public: void __cdecl ScreenReader::screenshotIsAlive(double)" (?screenshotIsAlive@ScreenReader@@QEAAXN@Z)
+screenReader.obj : error LNK2019: unresolved external symbol "double __cdecl cv::threshold(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &,double,double,int)" (?threshold@cv@@YANAEBV_InputArray@debug_build_guard@1@AEBV_OutputArray@31@NNH@Z) referenced in function "public: bool __cdecl ScreenReader::readIsAlive(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,double,bool)" (?readIsAlive@ScreenReader@@QEAA_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@N_N@Z)
+screenReader.obj : error LNK2019: unresolved external symbol "void __cdecl cv::matchTemplate(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &,int,class cv::debug_build_guard::_InputArray const &)" (?matchTemplate@cv@@YAXAEBV_InputArray@debug_build_guard@1@0AEBV_OutputArray@31@H0@Z) referenced in function "public: bool __cdecl ScreenReader::readIsAlive(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,double,bool)" (?readIsAlive@ScreenReader@@QEAA_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@N_N@Z)
+MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Users\zsakai.balint\Desktop\Solver\Solver\build\solverBuild\Solver.exe : fatal error LNK1120: 6 unresolved externals
