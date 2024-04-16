@@ -28,18 +28,18 @@ TEST(ScreenReader, readIsWon) {
 
 	//the initial smiley
 	std::string imageName = "isalive_init.png";
-	bool alive = scr.readIsWon(imageName, 1.00, true);
-	EXPECT_FALSE(alive);
+	bool isWon = scr.readIsWon(imageName, 1.00, true);
+	EXPECT_FALSE(isWon);
 
 	//the smiley after we lose a game
 	std::string imageName2 = "isalive_lost.png";
-	bool alive2 = scr.readIsWon(imageName2,1.00, true);
-	EXPECT_FALSE(alive2);
+	bool isWon2 = scr.readIsWon(imageName2,1.00, true);
+	EXPECT_FALSE(isWon2);
 
 	//the smiley after we won a game
 	std::string imageName3 = "isalive_won.png";
-	bool alive3 = scr.readIsWon(imageName3,1.00, true);
-	EXPECT_TRUE(alive3);
+	bool isWon3 = scr.readIsWon(imageName3,1.00, true);
+	EXPECT_TRUE(isWon3);
 };
 
 TEST(ScreenReader, readMinefield) {
@@ -317,6 +317,27 @@ TEST(ScreenReader, isInitial) {
 
 
 
+
+TEST(ScreenReader, isalive_lost_beginner_125) {
+	Beginner beginner;
+	ScreenReader scr(beginner, nullptr);
+	std::string imageName = "isalive_lost_beginner_125.png";
+	EXPECT_FALSE(scr.readIsAlive(imageName, 1.25, true));
+};
+
+TEST(ScreenReader, isalive_alive_beginner_125) {
+	Beginner beginner;
+	ScreenReader scr(beginner, nullptr);
+	std::string imageName = "isalive_alive_beginner_125.png";
+	EXPECT_TRUE(scr.readIsAlive(imageName, 1.25, true));
+};
+
+
+
+
+
+
+
 //100% SCREEN MAGNIFICATION
 TEST(ScreenReader, readMinefield_beginner_init_100) {
 	Beginner beginner;
@@ -591,6 +612,14 @@ TEST(ScreenReader, readMinefield_beginner_init_125) {
 	};
 
 	EXPECT_EQ(minefield, minefieldTest);
+};
+
+TEST(ScreenReader, isInitial_beginner_init_125) {
+	Beginner beginner;
+	ScreenReader scr(beginner, nullptr);
+
+	std::string imageName = "beginner_init_125.png";
+	EXPECT_TRUE(scr.isMinefieldInitial(imageName,1.25,true));
 };
 
 TEST(ScreenReader, readMinefield_beginner_ingame_125) {

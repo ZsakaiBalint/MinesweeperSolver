@@ -1,41 +1,13 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  buttonHandler.cpp
-D:\MinesweeperSolver\src\buttonHandler.cpp(196,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  clicker.cpp
-  constraint.cpp
-  constraintGroup.cpp
-  constraintGroupSolver.cpp
-  constraintMaker.cpp
-D:\MinesweeperSolver\src\constraintMaker.cpp(17,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\MinesweeperSolver\src\constraintMaker.cpp(18,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\MinesweeperSolver\src\constraintMaker.cpp(66,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\MinesweeperSolver\src\constraintMaker.cpp(67,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\MinesweeperSolver\src\constraintMaker.cpp(124,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\MinesweeperSolver\src\constraintMaker.cpp(125,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\MinesweeperSolver\src\constraintMaker.cpp(251,31): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  difficulty.cpp
-  fileWriter.cpp
-  guiData.cpp
-  main.cpp
-  minefieldMemory.cpp
-D:\MinesweeperSolver\src\minefieldMemory.cpp(22,28): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
-  mineProbability.cpp
-D:\MinesweeperSolver\src\mineProbability.cpp(97,25): warning C4018: '<': signed/unsigned mismatch
-D:\MinesweeperSolver\src\mineProbability.cpp(101,26): warning C4018: '<': signed/unsigned mismatch
   screenReader.cpp
 D:\MinesweeperSolver\src\screenReader.cpp(277,47): warning C4267: 'argument': conversion from 'size_t' to 'LONG', possible loss of data
 D:\MinesweeperSolver\src\screenReader.cpp(325,47): warning C4267: 'argument': conversion from 'size_t' to 'LONG', possible loss of data
 D:\MinesweeperSolver\src\screenReader.cpp(388,17): warning C4305: 'return': truncation from 'int' to 'bool'
-D:\MinesweeperSolver\src\screenReader.cpp(456,17): warning C4305: 'return': truncation from 'int' to 'bool'
-  solution.cpp
-  solutionMatrix.cpp
-  window.cpp
-D:\MinesweeperSolver\src\window.cpp(324,10): warning C4101: 'dpi': unreferenced local variable
-D:\MinesweeperSolver\src\window.cpp(323,10): warning C4101: 'minesw': unreferenced local variable
+D:\MinesweeperSolver\src\screenReader.cpp(455,17): warning C4305: 'return': truncation from 'int' to 'bool'
   Generating code
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-D:\MinesweeperSolver\src\window.cpp(250): warning C4715: 'Window::WindowProc': not all control paths return a value
-  All 1741 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  1 of 1741 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Solver.vcxproj -> D:\MinesweeperSolver\build\solverBuild\Solver.exe
           1 file(s) copied.

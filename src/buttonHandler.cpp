@@ -78,7 +78,7 @@ bool ButtonHandler::execute() {
 };
 
 void ButtonHandler::test() {
-	this->screenReader->screenshotMinefield(1.0);
+	this->screenReader->screenshotIsAlive(1.25);
 	/*
 	int numberOfTests = 100;
 	for (int i = 0; i < numberOfTests; ++i) {

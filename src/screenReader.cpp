@@ -254,8 +254,8 @@ void ScreenReader::screenshotIsAlive(double screenScaling) {
     //int screenshotX = static_cast<int>((minesweeperWindow.left + 15) * screenScaling);
     //int screenshotY = static_cast<int>((minesweeperWindow.top + 101) * screenScaling);
 
-    int screenshotX = minesweeperWindow.left;
-    int screenshotY = minesweeperWindow.top;
+    int screenshotX = static_cast<int>(minesweeperWindow.left * screenScaling);
+    int screenshotY = static_cast<int>(minesweeperWindow.top * screenScaling);
 
     // Create a device context for the entire screen
     HDC hScreenDC = GetDC(NULL);
@@ -395,7 +395,7 @@ bool ScreenReader::readIsAlive(std::string imageName, double screenScaling, bool
     std::vector<cv::Point> locationsSMILEY;
     std::vector<cv::Point> locationsSMILEY_CLICK;
 
-    double threshold = 0.9;
+    double threshold = 0.91;
 
     cv::matchTemplate(largerImage, smallerImageSMILEY, resultSMILEY, cv::TM_CCOEFF_NORMED);
     cv::threshold(resultSMILEY, resultSMILEY, threshold, 1.0, cv::THRESH_TOZERO);
@@ -427,7 +427,6 @@ bool ScreenReader::readIsWon(std::string imageName, double screenScaling, bool t
     else {
         imageFolder = "images/dependencyImages/";
     }
-
 
     std::string imageLocation = imageFolder + imageName;
     cv::Mat largerImage = cv::imread(imageLocation);
@@ -461,7 +460,7 @@ bool ScreenReader::readIsWon(std::string imageName, double screenScaling, bool t
 
     std::vector<cv::Point> locationsWON;
 
-    double threshold = 0.9;
+    double threshold = 0.8;
 
     cv::matchTemplate(largerImage, smallerImage, resultWON, cv::TM_CCOEFF_NORMED);
     cv::threshold(resultWON, resultWON, threshold, 1.0, cv::THRESH_TOZERO);
