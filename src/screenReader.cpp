@@ -172,12 +172,12 @@ std::vector<std::vector<Square>> ScreenReader::readMinefield(std::string imageNa
     std::string printResult = "";
     int squareSizeInPixels = 16;
 
-
     for (const auto& location : locationsUNKNOWN) {
         int row = static_cast<int>( location.y / (squareSizeInPixels * screenScaling) );
         int col = static_cast<int>( location.x / (squareSizeInPixels * screenScaling) );
         matrix[row][col] = UNKNOWN;
     }
+  
     for (const auto& location : locationsFLAGGED) {
         int row = static_cast<int>(location.y / (squareSizeInPixels * screenScaling));
         int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
@@ -231,6 +231,36 @@ std::vector<std::vector<Square>> ScreenReader::readMinefield(std::string imageNa
         int col = static_cast<int>(location.x / (squareSizeInPixels * screenScaling));
         matrix[row][col] = EIGHT;
     }
+
+
+    //There is a bug where sometimes a square is falsely identified as ZERO instead of UNKNOWN.
+    //A rule exists in minesweeper that states:  
+    //"a ZERO square (a square with no adjacent mines) reveals all adjacent squares automatically when clicked."
+    //So in any minesweeper configuration, a ZERO square with all of it's adjacent squares being UNKNOWN shouldn't exist
+    //we solve this by assigning the UNKNOWN value to all of these ZERO squares
+    int numRows = matrix.size();
+    int numCols = matrix[0].size();
+
+    for (int i = 0; i < numRows; ++i) {
+        for (int j = 0; j < numCols; ++j) {
+            if (matrix[i][j] == ZERO) {
+                std::vector<Square> adjacent = getAdjacentElements(matrix, i, j);
+                bool allUnknown = true;
+                for (const auto& elem : adjacent) {
+                    if (elem != UNKNOWN) {
+                        allUnknown = false;
+                        break;
+                    }
+                }
+                if (allUnknown) {
+                    matrix[i][j] = UNKNOWN;
+                }
+            }
+        }
+    }
+
+
+
 
     return matrix;
 }
@@ -299,11 +329,13 @@ void ScreenReader::screenshotMinefield(double screenScaling) {
     RECT minesweeperWindow;
     GetWindowRect(minesweeperHandle, &minesweeperWindow);
 
+
     int screenshotX = static_cast<int>( (minesweeperWindow.left + 15) * screenScaling );
     int screenshotY = static_cast<int>( (minesweeperWindow.top + 101) * screenScaling );
 
     int screenshotWidth = static_cast<int>(difficulty.getWidth() * 16 * screenScaling);
     int screenshotHeight = static_cast<int>(difficulty.getHeight() * 16 * screenScaling);
+   
 
     // Create a device context for the entire screen
     HDC hScreenDC = GetDC(NULL);
@@ -537,4 +569,30 @@ double ScreenReader::getScreenScaling() {
     horizontalScale = std::round(horizontalScale * 100.0) / 100.0;
 
     return horizontalScale;
+}
+
+
+
+
+
+bool ScreenReader::isValidIndex(int i, int j, int numRows, int numCols) {
+    return i >= 0 && i < numRows && j >= 0 && j < numCols;
+}
+
+std::vector<Square> ScreenReader::getAdjacentElements(const std::vector<std::vector<Square>>& matrix, int row, int col) {
+    std::vector<Square> adjacentElements;
+
+    int numRows = matrix.size();
+    int numCols = matrix[0].size();
+
+    // Iterate over adjacent elements
+    for (int i = row - 1; i <= row + 1; ++i) {
+        for (int j = col - 1; j <= col + 1; ++j) {
+            if (isValidIndex(i, j, numRows, numCols) && !(i == row && j == col)) {
+                adjacentElements.push_back(matrix[i][j]);
+            }
+        }
+    }
+
+    return adjacentElements;
 }

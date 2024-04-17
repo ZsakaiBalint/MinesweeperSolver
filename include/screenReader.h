@@ -56,4 +56,12 @@ public:
 	bool isMinefieldInitial(std::string imageName = "", double screenScaling = 1.25, bool testMode = false);
 
 	double getScreenScaling();
+
+
+
+
+
+	bool isValidIndex(int i, int j, int numRows, int numCols);
+
+	std::vector<Square> getAdjacentElements(const std::vector<std::vector<Square>>& matrix, int row, int col);
 };
