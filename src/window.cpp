@@ -1,6 +1,8 @@
 #include "window.h"
 #include "screenReader.h"
 
+HHOOK g_hHook = NULL;
+
 Window::~Window()
 {
     if (hwnd) 
@@ -116,6 +118,7 @@ Window::Window() : buttonHandler(), guiData()
     ShowWindow(hwnd, SW_SHOW);
 
     UpdateWindow(hwnd);
+
 }
 
 void Window::RunMessageLoop()
@@ -128,8 +131,6 @@ void Window::RunMessageLoop()
     }
 }
 
-//IMPORTANT!!! => this function retrieves the difficulty at 100% display
-//(screen magnification)
 Difficulty Window::getDifficulty() {
 
     RECT windowRect;
@@ -153,26 +154,7 @@ Difficulty Window::getDifficulty() {
         Expert e;
         return e;
     }
-    /*
-    if (std::fabs(windowWidth - (158 * screenMagnification)) < epsilon
-    && std::fabs(windowHeight - (244 * screenMagnification)) < epsilon ) {
 
-        Beginner b;
-        return b;
-    }
-    else if (std::fabs(windowWidth - (286 * screenMagnification)) < epsilon
-    && std::fabs(windowHeight - (372 * screenMagnification)) < epsilon ) {
-
-        Intermediate i;
-        return i;
-    }
-    else if (std::fabs(windowWidth - (510 * screenMagnification)) < epsilon
-    && std::fabs(windowHeight - (372 * screenMagnification)) < epsilon ) {
-        Expert e;
-        return e;
-    }
-    */
-    
     else {
         throw std::runtime_error("unknown map difficulty");
     }
