@@ -112,18 +112,20 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\opencv\build\include;$(SolutionDir)include;$(SolutionDir)dependencies\gdiplus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opencv_world490.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world490d.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\opencv\build\x64\vc16\lib;$(SolutionDir)dependencies\gdiplus\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)dependencies\opencv\build\x64\vc16\bin\opencv_world490.dll $(SolutionDir)build\solverBuild</Command>
+      <Command>copy $(SolutionDir)dependencies\opencv\build\x64\vc16\bin\opencv_world490d.dll $(SolutionDir)build\solverBuild</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -135,6 +137,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\opencv\build\include;$(SolutionDir)include;$(SolutionDir)dependencies\gdiplus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -145,7 +148,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\opencv\build\x64\vc16\lib;$(SolutionDir)dependencies\gdiplus\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)dependencies\opencv\build\x64\vc16\bin\opencv_world490.dll $(SolutionDir)build\solverBuild</Command>
+      <Command>copy $(SolutionDir)dependencies\opencv\build\x64\vc16\bin\opencv_world490.dll $(SolutionDir)build\solverBuild &amp; xcopy /s /e /i $(SolutionDir)images $(SolutionDir)build\solverBuild\images</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

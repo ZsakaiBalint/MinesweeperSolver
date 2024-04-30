@@ -1,6 +1,6 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   buttonHandler.cpp
-D:\MinesweeperSolver\src\buttonHandler.cpp(196,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\buttonHandler.cpp(198,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   clicker.cpp
   constraint.cpp
   constraintGroup.cpp
@@ -23,22 +23,21 @@ D:\MinesweeperSolver\src\minefieldMemory.cpp(22,28): warning C4267: '+=': conver
 D:\MinesweeperSolver\src\mineProbability.cpp(97,25): warning C4018: '<': signed/unsigned mismatch
 D:\MinesweeperSolver\src\mineProbability.cpp(101,26): warning C4018: '<': signed/unsigned mismatch
   screenReader.cpp
-D:\MinesweeperSolver\src\screenReader.cpp(277,47): warning C4267: 'argument': conversion from 'size_t' to 'LONG', possible loss of data
-D:\MinesweeperSolver\src\screenReader.cpp(325,47): warning C4267: 'argument': conversion from 'size_t' to 'LONG', possible loss of data
-D:\MinesweeperSolver\src\screenReader.cpp(388,17): warning C4305: 'return': truncation from 'int' to 'bool'
-D:\MinesweeperSolver\src\screenReader.cpp(456,17): warning C4305: 'return': truncation from 'int' to 'bool'
+D:\MinesweeperSolver\src\screenReader.cpp(241,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\screenReader.cpp(242,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\screenReader.cpp(307,47): warning C4267: 'argument': conversion from 'size_t' to 'LONG', possible loss of data
+D:\MinesweeperSolver\src\screenReader.cpp(357,47): warning C4267: 'argument': conversion from 'size_t' to 'LONG', possible loss of data
+D:\MinesweeperSolver\src\screenReader.cpp(420,17): warning C4305: 'return': truncation from 'int' to 'bool'
+D:\MinesweeperSolver\src\screenReader.cpp(487,17): warning C4305: 'return': truncation from 'int' to 'bool'
+D:\MinesweeperSolver\src\screenReader.cpp(585,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\screenReader.cpp(586,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   solution.cpp
   solutionMatrix.cpp
   window.cpp
-D:\MinesweeperSolver\src\window.cpp(324,10): warning C4101: 'dpi': unreferenced local variable
-D:\MinesweeperSolver\src\window.cpp(323,10): warning C4101: 'minesw': unreferenced local variable
+D:\MinesweeperSolver\src\window.cpp(306,10): warning C4101: 'dpi': unreferenced local variable
+D:\MinesweeperSolver\src\window.cpp(305,10): warning C4101: 'minesw': unreferenced local variable
   Generating Code...
-D:\MinesweeperSolver\src\window.cpp(250,1): warning C4715: 'Window::WindowProc': not all control paths return a value
+D:\MinesweeperSolver\src\window.cpp(232,1): warning C4715: 'Window::WindowProc': not all control paths return a value
 D:\MinesweeperSolver\src\mineProbability.cpp(214,1): warning C4715: 'operator<': not all control paths return a value
-screenReader.obj : error LNK2019: unresolved external symbol "class cv::debug_build_guard::_InputOutputArray const & __cdecl cv::noArray(void)" (?noArray@cv@@YAAEBV_InputOutputArray@debug_build_guard@1@XZ) referenced in function "public: bool __cdecl ScreenReader::readIsAlive(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,double,bool)" (?readIsAlive@ScreenReader@@QEAA_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@N_N@Z)
-screenReader.obj : error LNK2019: unresolved external symbol "void __cdecl cv::findNonZero(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &)" (?findNonZero@cv@@YAXAEBV_InputArray@debug_build_guard@1@AEBV_OutputArray@31@@Z) referenced in function "public: bool __cdecl ScreenReader::readIsAlive(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,double,bool)" (?readIsAlive@ScreenReader@@QEAA_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@N_N@Z)
-screenReader.obj : error LNK2019: unresolved external symbol "bool __cdecl cv::imwrite(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::debug_build_guard::_InputArray const &,class std::vector<int,class std::allocator<int> > const &)" (?imwrite@cv@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV_InputArray@debug_build_guard@1@AEBV?$vector@HV?$allocator@H@std@@@3@@Z) referenced in function "public: void __cdecl ScreenReader::screenshotIsAlive(double)" (?screenshotIsAlive@ScreenReader@@QEAAXN@Z)
-screenReader.obj : error LNK2019: unresolved external symbol "double __cdecl cv::threshold(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &,double,double,int)" (?threshold@cv@@YANAEBV_InputArray@debug_build_guard@1@AEBV_OutputArray@31@NNH@Z) referenced in function "public: bool __cdecl ScreenReader::readIsAlive(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,double,bool)" (?readIsAlive@ScreenReader@@QEAA_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@N_N@Z)
-screenReader.obj : error LNK2019: unresolved external symbol "void __cdecl cv::matchTemplate(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &,int,class cv::debug_build_guard::_InputArray const &)" (?matchTemplate@cv@@YAXAEBV_InputArray@debug_build_guard@1@0AEBV_OutputArray@31@H0@Z) referenced in function "public: bool __cdecl ScreenReader::readIsAlive(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,double,bool)" (?readIsAlive@ScreenReader@@QEAA_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@N_N@Z)
-MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
-D:\MinesweeperSolver\build\solverBuild\Solver.exe : fatal error LNK1120: 6 unresolved externals
+  Solver.vcxproj -> D:\MinesweeperSolver\build\solverBuild\Solver.exe
+          1 file(s) copied.

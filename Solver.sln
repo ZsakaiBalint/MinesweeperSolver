@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "googletest", "dependencies\googletest\googletest.vcxproj", "{F6ADF0BD-8718-4430-9E4C-5CF2A8C3B94E}"
 EndProject
-Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "Installer", "Installer\Installer.aiproj", "{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|x64 = All|x64
@@ -49,18 +47,6 @@ Global
 		{F6ADF0BD-8718-4430-9E4C-5CF2A8C3B94E}.Release|x64.Build.0 = Release|x64
 		{F6ADF0BD-8718-4430-9E4C-5CF2A8C3B94E}.Release|x86.ActiveCfg = Release|Win32
 		{F6ADF0BD-8718-4430-9E4C-5CF2A8C3B94E}.Release|x86.Build.0 = Release|Win32
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.All|x64.ActiveCfg = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.All|x64.Build.0 = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.All|x86.ActiveCfg = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.All|x86.Build.0 = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.Debug|x64.ActiveCfg = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.Debug|x64.Build.0 = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.Debug|x86.ActiveCfg = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.Debug|x86.Build.0 = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.Release|x64.ActiveCfg = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.Release|x64.Build.0 = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.Release|x86.ActiveCfg = DefaultBuild
-		{98859EE9-F3E5-46C0-A9CE-55B04F4D5B3A}.Release|x86.Build.0 = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
