@@ -72,6 +72,9 @@
     <ClInclude Include="..\..\include\window.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\buttonHandler.cpp">
@@ -214,5 +217,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Solver.rc">
+      <Filter>images</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -1,0 +1,1 @@
+D:\MinesweeperSolver\build\visualStudio\x64\Release\Solver.vcxproj.Up2Date

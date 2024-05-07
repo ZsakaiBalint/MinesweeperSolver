@@ -148,8 +148,15 @@
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\opencv\build\x64\vc16\lib;$(SolutionDir)dependencies\gdiplus\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)dependencies\opencv\build\x64\vc16\bin\opencv_world490.dll $(SolutionDir)build\solverBuild &amp; xcopy /s /e /i $(SolutionDir)images $(SolutionDir)build\solverBuild\images</Command>
+      <Command>xcopy /s /e /i $(SolutionDir)images $(SolutionDir)build\solverBuild\images
+copy $(SolutionDir)dependencies\opencv\build\x64\vc16\bin\opencv_world490.dll $(SolutionDir)build\solverBuild 
+
+</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\buttonHandler.h" />
@@ -169,6 +176,7 @@
     <ClInclude Include="..\..\include\solution.h" />
     <ClInclude Include="..\..\include\solutionMatrix.h" />
     <ClInclude Include="..\..\include\window.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\buttonHandler.cpp" />
@@ -221,6 +229,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Solver.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,1 +1,134 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppClean.targets(77,5): warning : Access to the path 'd:\minesweepersolver\build\solverbuild\solver.exe' is denied.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  buttonHandler.cpp
+D:\MinesweeperSolver\src\buttonHandler.cpp(198,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  clicker.cpp
+  constraint.cpp
+  constraintGroup.cpp
+  constraintGroupSolver.cpp
+  constraintMaker.cpp
+D:\MinesweeperSolver\src\constraintMaker.cpp(17,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\constraintMaker.cpp(18,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\constraintMaker.cpp(66,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\constraintMaker.cpp(67,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\constraintMaker.cpp(124,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\constraintMaker.cpp(125,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\constraintMaker.cpp(251,31): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  difficulty.cpp
+  fileWriter.cpp
+  guiData.cpp
+  main.cpp
+  minefieldMemory.cpp
+D:\MinesweeperSolver\src\minefieldMemory.cpp(22,28): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+  mineProbability.cpp
+D:\MinesweeperSolver\src\mineProbability.cpp(97,25): warning C4018: '<': signed/unsigned mismatch
+D:\MinesweeperSolver\src\mineProbability.cpp(101,26): warning C4018: '<': signed/unsigned mismatch
+  screenReader.cpp
+D:\MinesweeperSolver\src\screenReader.cpp(241,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\screenReader.cpp(242,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\screenReader.cpp(307,47): warning C4267: 'argument': conversion from 'size_t' to 'LONG', possible loss of data
+D:\MinesweeperSolver\src\screenReader.cpp(357,47): warning C4267: 'argument': conversion from 'size_t' to 'LONG', possible loss of data
+D:\MinesweeperSolver\src\screenReader.cpp(420,17): warning C4305: 'return': truncation from 'int' to 'bool'
+D:\MinesweeperSolver\src\screenReader.cpp(487,17): warning C4305: 'return': truncation from 'int' to 'bool'
+D:\MinesweeperSolver\src\screenReader.cpp(585,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\MinesweeperSolver\src\screenReader.cpp(586,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  solution.cpp
+  solutionMatrix.cpp
+  window.cpp
+D:\MinesweeperSolver\src\window.cpp(306,10): warning C4101: 'dpi': unreferenced local variable
+D:\MinesweeperSolver\src\window.cpp(305,10): warning C4101: 'minesw': unreferenced local variable
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+D:\MinesweeperSolver\src\window.cpp(232): warning C4715: 'Window::WindowProc': not all control paths return a value
+  All 2041 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Solver.vcxproj -> D:\MinesweeperSolver\build\solverBuild\Solver.exe
+  D:\MinesweeperSolver\images\dependencyImages\EIGHT_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\EIGHT_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\EIGHT_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\EIGHT_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\FIVE_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\FIVE_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\FIVE_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\FIVE_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\FLAGGED_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\FLAGGED_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\FLAGGED_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\FLAGGED_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\FOUR_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\FOUR_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\FOUR_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\FOUR_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\icon.ico
+  D:\MinesweeperSolver\images\dependencyImages\icon3.ico
+  D:\MinesweeperSolver\images\dependencyImages\isalive_screenshot.png
+  D:\MinesweeperSolver\images\dependencyImages\minesweeper_screenshot.png
+  D:\MinesweeperSolver\images\dependencyImages\ONE_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\ONE_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\ONE_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\ONE_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\SEVEN_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\SEVEN_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\SEVEN_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\SEVEN_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\SIX_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\SIX_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\SIX_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\SIX_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_CLICK_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_CLICK_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_CLICK_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_CLICK_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_LOST_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_LOST_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_LOST_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_LOST_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_WON_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_WON_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_WON_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\SMILEY_WON_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\THREE_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\THREE_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\THREE_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\THREE_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\TWO_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\TWO_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\TWO_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\TWO_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\UNKNOWN_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\UNKNOWN_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\UNKNOWN_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\UNKNOWN_1.75.png
+  D:\MinesweeperSolver\images\dependencyImages\ZERO_1.00.png
+  D:\MinesweeperSolver\images\dependencyImages\ZERO_1.25.png
+  D:\MinesweeperSolver\images\dependencyImages\ZERO_1.50.png
+  D:\MinesweeperSolver\images\dependencyImages\ZERO_1.75.png
+  D:\MinesweeperSolver\images\testImages\beginner_ingame_100.png
+  D:\MinesweeperSolver\images\testImages\beginner_ingame_125.png
+  D:\MinesweeperSolver\images\testImages\beginner_init_100.png
+  D:\MinesweeperSolver\images\testImages\beginner_init_125.png
+  D:\MinesweeperSolver\images\testImages\beginner_won_100.png
+  D:\MinesweeperSolver\images\testImages\beginner_won_125.png
+  D:\MinesweeperSolver\images\testImages\bug.png
+  D:\MinesweeperSolver\images\testImages\expert_ingame_100.png
+  D:\MinesweeperSolver\images\testImages\expert_ingame_125.png
+  D:\MinesweeperSolver\images\testImages\expert_init_100.png
+  D:\MinesweeperSolver\images\testImages\expert_init_125.png
+  D:\MinesweeperSolver\images\testImages\expert_won_100.png
+  D:\MinesweeperSolver\images\testImages\expert_won_125.png
+  D:\MinesweeperSolver\images\testImages\intermediate_ingame_100.png
+  D:\MinesweeperSolver\images\testImages\intermediate_ingame_125.png
+  D:\MinesweeperSolver\images\testImages\intermediate_init_100.png
+  D:\MinesweeperSolver\images\testImages\intermediate_init_125.png
+  D:\MinesweeperSolver\images\testImages\intermediate_won_100.png
+  D:\MinesweeperSolver\images\testImages\intermediate_won_125.png
+  D:\MinesweeperSolver\images\testImages\isalive_alive_beginner_125.png
+  D:\MinesweeperSolver\images\testImages\isalive_init.png
+  D:\MinesweeperSolver\images\testImages\isalive_lost.png
+  D:\MinesweeperSolver\images\testImages\isalive_lost_beginner_125.png
+  D:\MinesweeperSolver\images\testImages\isalive_won.png
+  88 File(s) copied
+          1 file(s) copied.
