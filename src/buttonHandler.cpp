@@ -78,9 +78,7 @@ bool ButtonHandler::execute() {
 };
 
 void ButtonHandler::test() {
-	this->screenReader->screenshotIsAlive(1.25);
 	
-	/*
 	int numberOfTests = 100;
 	for (int i = 0; i < numberOfTests; ++i) {
 
@@ -99,7 +97,6 @@ void ButtonHandler::test() {
 		Difficulty currentDifficulty = this->difficulty;
 		setDifficulty(difficulty);
 	}
-	*/
 	
 };
 
